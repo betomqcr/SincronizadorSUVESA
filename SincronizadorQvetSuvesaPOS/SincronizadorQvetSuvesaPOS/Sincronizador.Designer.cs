@@ -28,10 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
+            this.st_Inicio = new System.Timers.Timer();
+            ((System.ComponentModel.ISupportInitialize)(this.st_Inicio)).BeginInit();
+            // 
+            // st_Inicio
+            // 
+            this.st_Inicio.Enabled = true;
+            this.st_Inicio.Interval = 60000D;
+            this.st_Inicio.Elapsed += new System.Timers.ElapsedEventHandler(this.st_Inicio_Elapsed);
+            // 
+            // Sincronizador
+            // 
             this.ServiceName = "Sincronizador";
+            ((System.ComponentModel.ISupportInitialize)(this.st_Inicio)).EndInit();
+
         }
 
         #endregion
+
+        private System.Timers.Timer st_Inicio;
     }
 }
