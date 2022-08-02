@@ -17,7 +17,7 @@ namespace SincronizadorQvetSuvesaPOS
             ServiceBase[] ServicesToRun;
             ServicesToRun = new ServiceBase[]
             {
-                new Service1()
+                new Sincronizador()
             };
             ServiceBase.Run(ServicesToRun);
         }
