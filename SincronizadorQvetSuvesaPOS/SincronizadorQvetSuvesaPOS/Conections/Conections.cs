@@ -13,8 +13,10 @@ namespace SincronizadorQvetSuvesaPOS.Conections
 {
     public class Conections
     {
+        public string linkAPI = "";
         public Conections()
         {
+            linkAPI = GetUrlApiQvet();
 
         }
 

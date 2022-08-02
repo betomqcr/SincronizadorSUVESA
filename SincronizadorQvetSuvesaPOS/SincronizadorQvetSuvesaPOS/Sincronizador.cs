@@ -41,8 +41,8 @@ namespace SincronizadorQvetSuvesaPOS
             {
                 bandera = true;
 
-                string res = con.GetUrlApiQvet();
-                string res2 = res;
+                //string res = con.GetUrlApiQvet();
+                //string res2 = res;
                 OnStop();
             }
             catch(Exception ex)
