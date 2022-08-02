@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace SincronizadorQvetSuvesaPOS.Negocio
 {
-    internal class Proccess
+    public  class Proccess
     {
+        public Proccess()
+        {
+
+        }
     }
 }
