@@ -139,7 +139,7 @@ namespace SincronizadorQvetSuvesaPOS.Conections
             {
                 
                 Solicitud solicitud = new Solicitud();
-                //solicitud.DesdeFechaActualizacion = DateTime.Now;
+                //solicitud.DesdeFechaActualizacion = DateTime.Now.ToShortDateString();
                 solicitud.RegistrosPorPagina = 0;
                 
                 using (var client = new HttpClient())

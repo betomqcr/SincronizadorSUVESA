@@ -20,18 +20,18 @@ namespace SincronizadorQvetSuvesaPOS.Datos
             this.Albaran_Detalle = new HashSet<Albaran_Detalle>();
         }
     
-        public int id { get; set; }
+        public long id { get; set; }
         public string NombreCliente { get; set; }
         public string NombreMascota { get; set; }
         public System.DateTime Fecha { get; set; }
-        public int Id_Qvet_Migrado { get; set; }
+        public long Id_Qvet_Migrado { get; set; }
         public bool facturado { get; set; }
         public string Cedula { get; set; }
-        public int Id_Mascota_Qvet { get; set; }
+        public long Id_Mascota_Qvet { get; set; }
         public string Email { get; set; }
         public string Direccion { get; set; }
         public string NHC_Mascota { get; set; }
-        public int ID_Factura_Suvesa { get; set; }
+        public long ID_Factura_Suvesa { get; set; }
         public string Responsable { get; set; }
         public string Tipo_Cliente { get; set; }
         public string CHIP_Mascota { get; set; }

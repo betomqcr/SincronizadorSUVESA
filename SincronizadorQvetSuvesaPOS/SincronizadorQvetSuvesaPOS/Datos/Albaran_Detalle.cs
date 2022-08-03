@@ -14,12 +14,12 @@ namespace SincronizadorQvetSuvesaPOS.Datos
     
     public partial class Albaran_Detalle
     {
-        public int id { get; set; }
-        public int idEncabezado { get; set; }
+        public long id { get; set; }
+        public long idEncabezado { get; set; }
         public string Descripcion { get; set; }
-        public int CodigoInternoQvet { get; set; }
+        public long CodigoInternoQvet { get; set; }
         public decimal Cantidad { get; set; }
-        public int IVA { get; set; }
+        public long IVA { get; set; }
         public double descuento { get; set; }
         public decimal PrecioVenta { get; set; }
         public decimal Total { get; set; }
