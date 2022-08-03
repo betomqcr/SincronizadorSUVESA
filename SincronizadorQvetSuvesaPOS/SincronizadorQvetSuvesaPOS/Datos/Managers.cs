@@ -42,6 +42,20 @@ namespace SincronizadorQvetSuvesaPOS.Datos
 
                     long t= ObtenerIdDeAlbaranMigrado(dato.IdAlbaran);
                     // Consulto id del que inserto
+
+                    foreach (ListaLinea lista in dato.ListaLineas)
+                    {
+                        Albaran_Detalle d = new Albaran_Detalle();
+                        d.idEncabezado = t;
+                        d.Descripcion = lista.Descripcion;
+                        d.CodigoInternoQvet = lista.IdArticulo;
+                        d.IVA = lista.Iva.Valor;
+                        d.descuento = lista.Descuento;
+                        d.PrecioVenta = lista.Tarifa.PrecioUnitario;
+                        d.Cantidad = lista.Cantidad;
+                        d.Total = lista.Total;
+                        
+                    }
                     // con id del insertado y inserto la lineas
                 }
                 
