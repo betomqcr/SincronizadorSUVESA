@@ -23,7 +23,24 @@ namespace SincronizadorQvetSuvesaPOS.Datos
             {
                 foreach (Dato dato in datos)
                 {
-                    //aqui inserto
+                    Albaran a = new Albaran();
+                    a.NombreCliente = dato.Cliente.Nombre;
+                    a.NombreMascota = dato.Mascota.Nombre;
+                    a.Fecha = dato.Fecha;
+                    a.Id_Qvet_Migrado = dato.IdAlbaran;
+                    a.Cedula = dato.Cliente.Documento;
+                    a.Id_Mascota_Qvet = dato.Mascota.IdMascota;
+                    a.Email = dato.Cliente.Email;
+                    a.Direccion = dato.Cliente.Domicilio;
+                    a.NHC_Mascota = dato.Mascota.Nhc;
+                    a.Responsable = dato.ResponsableVenta;
+                    a.Tipo_Cliente = dato.Cliente.TipoCliente;
+                    a.CHIP_Mascota = dato.Mascota.Chip;
+                    a.facturado = false;
+                    entities.Albarans.Add(a);
+                    return entities.SaveChanges();
+
+                    long t= ObtenerIdDeAlbaranMigrado(dato.IdAlbaran);
                     // Consulto id del que inserto
                     // con id del insertado y inserto la lineas
                 }

@@ -30,7 +30,7 @@ namespace SincronizadorQvetSuvesaPOS.Modelos
         public string CifNif { get; set; }
 
         [JsonProperty("documento")]
-        public object Documento { get; set; }
+        public string Documento { get; set; }
 
         [JsonProperty("tipo_documento")]
         public object TipoDocumento { get; set; }
@@ -87,7 +87,7 @@ namespace SincronizadorQvetSuvesaPOS.Modelos
         public string Telefono2 { get; set; }
 
         [JsonProperty("email")]
-        public object Email { get; set; }
+        public string Email { get; set; }
 
         [JsonProperty("fax")]
         public string Fax { get; set; }
