@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 
 namespace SincronizadorQvetSuvesaPOS.Modelos
 {
-    internal class ParseStringConverter: JsonConverter
+    internal class ParseStringConverter : JsonConverter
     {
         public override bool CanConvert(Type t) => t == typeof(long) || t == typeof(long?);
 
@@ -35,4 +35,5 @@ namespace SincronizadorQvetSuvesaPOS.Modelos
             serializer.Serialize(writer, value.ToString());
             return;
         }
+    }
 }

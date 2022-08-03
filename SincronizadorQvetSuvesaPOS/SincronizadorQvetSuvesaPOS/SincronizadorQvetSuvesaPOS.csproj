@@ -86,6 +86,8 @@
       <DependentUpon>BaseDeDatos.tt</DependentUpon>
     </Compile>
     <Compile Include="Datos\Managers.cs" />
+    <Compile Include="Modelos\GtokenApi.cs" />
+    <Compile Include="Modelos\Solicitud.cs" />
     <Compile Include="Modelos\Cliente.cs" />
     <Compile Include="Modelos\Converter.cs" />
     <Compile Include="Modelos\Dato.cs" />
@@ -93,12 +95,15 @@
     <Compile Include="Modelos\Iva.cs" />
     <Compile Include="Modelos\Link.cs" />
     <Compile Include="Modelos\ListaLinea.cs" />
+    <Compile Include="Modelos\Llave.cs" />
     <Compile Include="Modelos\Marca.cs" />
     <Compile Include="Modelos\Mascota.cs" />
     <Compile Include="Modelos\ModelError.cs" />
     <Compile Include="Modelos\ParseStringConverter.cs" />
     <Compile Include="Modelos\ResultadoLink.cs" />
+    <Compile Include="Modelos\Serialize.cs" />
     <Compile Include="Modelos\Tarifa.cs" />
+    <Compile Include="Modelos\Token.cs" />
     <Compile Include="Negocio\Proccess.cs" />
     <Compile Include="Service1.cs">
       <SubType>Component</SubType>

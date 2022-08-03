@@ -76,5 +76,117 @@ namespace SincronizadorQvetSuvesaPOS.Conections
 
             }
         }
+
+        public string GetToken()
+        {
+            try
+            {
+                Token token = new Token();
+                token.clientid = ConfigurationSettings.AppSettings["QvetWS"].ToString();
+                using (var client = new HttpClient())
+                {
+                    var task = Task.Run(async () =>
+                    {
+                        return await client.PostAsync(
+                            GLinkApi.linkApi+ "/auth",
+                            new StringContent(token.ToString(), Encoding.UTF8, "application/json")
+                            );
+                    }
+                    );
+                    HttpResponseMessage message = task.Result;
+                    if (message.StatusCode == System.Net.HttpStatusCode.OK)
+                    {
+                        Llave reslink = new Llave();
+                        var task2 = Task<string>.Run(async () =>
+                        {
+                            return await message.Content.ReadAsStringAsync();
+                        });
+                        var jsonstrig = task2.Result;
+                        reslink = JsonConvert.DeserializeObject<Llave>(jsonstrig);
+                        GtokenApi.tokenApi = reslink.token;
+                        return reslink.token;
+                        
+                    }
+                    else if (message.StatusCode == System.Net.HttpStatusCode.Conflict)
+                    {
+                        return "Error de credenciales";
+                    }
+                    else
+                    {
+                        var task2 = Task<string>.Run(async () =>
+                        {
+                            return await message.Content.ReadAsStringAsync();
+                        });
+                        string mens = task2.Result;
+                        ModelError error = JsonConvert.DeserializeObject<ModelError>(mens);
+                        return error.Exceptionmessage;
+                    }
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+
+            }
+        }
+
+
+        public string ObtenerResultadosApiVentas()
+        {
+            try
+            {
+                
+                Solicitud solicitud = new Solicitud();
+                //solicitud.DesdeFechaActualizacion = DateTime.Now;
+                solicitud.RegistrosPorPagina = 0;
+                
+                using (var client = new HttpClient())
+                {
+                    client.DefaultRequestHeaders.Add("Authorization", "Bearer " + GtokenApi.tokenApi);
+                    var task = Task.Run(async () =>
+                    {
+                        return await client.PostAsync(
+                            GLinkApi.linkApi + "/ventas",
+                            new StringContent(solicitud.ToString(), Encoding.UTF8, "application/json")
+                            ); ;
+                    }
+                    );
+                    HttpResponseMessage message = task.Result;
+                    if (message.StatusCode == System.Net.HttpStatusCode.OK)
+                    {
+                        Marca marca = new Marca();
+                        var task2 = Task<string>.Run(async () =>
+                        {
+                            return await message.Content.ReadAsStringAsync();
+                        });
+                        var jsonstrig = task2.Result;
+                        marca = JsonConvert.DeserializeObject<Marca>(jsonstrig);
+                        string resultStr = "";
+                        return resultStr;
+                    }
+                    else if (message.StatusCode == System.Net.HttpStatusCode.Conflict)
+                    {
+                        return "Error de Servidor";
+                    }
+                    else
+                    {
+                        var task2 = Task<string>.Run(async () =>
+                        {
+                            return await message.Content.ReadAsStringAsync();
+                        });
+                        string mens = task2.Result;
+                        ModelError error = JsonConvert.DeserializeObject<ModelError>(mens);
+                        return error.Exceptionmessage;
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+        }
     }
 }
