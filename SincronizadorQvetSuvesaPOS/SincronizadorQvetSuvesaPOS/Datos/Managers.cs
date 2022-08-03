@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SincronizadorQvetSuvesaPOS.Datos;
+using SincronizadorQvetSuvesaPOS.Modelos;
 
 namespace SincronizadorQvetSuvesaPOS.Datos
 {
@@ -20,7 +21,7 @@ namespace SincronizadorQvetSuvesaPOS.Datos
         {
             try
             {
-
+                string link = GLinkApi.linkApi; //Borrar solo para explicarle a Beto
             }
             catch(Exception ex)
             {

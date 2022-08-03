@@ -88,6 +88,7 @@
     <Compile Include="Datos\Managers.cs" />
     <Compile Include="Modelos\Albaran.cs" />
     <Compile Include="Modelos\DetalleAlbaran.cs" />
+    <Compile Include="Modelos\GLinkApi.cs" />
     <Compile Include="Modelos\Link.cs" />
     <Compile Include="Modelos\ModelError.cs" />
     <Compile Include="Modelos\ResultadoLink.cs" />

@@ -8,12 +8,15 @@ using System.ServiceProcess;
 using System.Text;
 using System.Threading.Tasks;
 using SincronizadorQvetSuvesaPOS.Conections;
+using SincronizadorQvetSuvesaPOS.Datos;
+using SincronizadorQvetSuvesaPOS.Modelos;
 
 namespace SincronizadorQvetSuvesaPOS
 {
     partial class Sincronizador : ServiceBase
     {
         Conections.Conections con = new Conections.Conections();
+        Managers man = new Managers(); //Borrar solo para explicarle a Beto
         bool bandera= false;
 
         public Sincronizador()
@@ -41,8 +44,8 @@ namespace SincronizadorQvetSuvesaPOS
             {
                 bandera = true;
 
-                //string res = con.GetUrlApiQvet();
-                //string res2 = res;
+                GLinkApi.linkApi = con.GetUrlApiQvet();
+                man.InsertarAlbaranes(); // borrar solo explicarle a Beto
                 OnStop();
             }
             catch(Exception ex)
