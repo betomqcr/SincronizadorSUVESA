@@ -21,7 +21,7 @@ namespace SincronizadorQvetSuvesaPOS.Datos
         {
             try
             {
-                string link = GLinkApi.linkApi; //Borrar solo para explicarle a Beto
+                
             }
             catch(Exception ex)
             {

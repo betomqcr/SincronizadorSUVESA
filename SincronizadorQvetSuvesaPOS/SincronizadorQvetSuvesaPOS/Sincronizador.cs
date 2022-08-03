@@ -44,8 +44,8 @@ namespace SincronizadorQvetSuvesaPOS
             {
                 bandera = true;
 
-                GLinkApi.linkApi = con.GetUrlApiQvet();
-                man.InsertarAlbaranes(); // borrar solo explicarle a Beto
+                //GLinkApi.linkApi = con.GetUrlApiQvet();
+                //man.InsertarAlbaranes(); // borrar solo explicarle a Beto
                 OnStop();
             }
             catch(Exception ex)
