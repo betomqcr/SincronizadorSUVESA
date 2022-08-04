@@ -26,10 +26,10 @@ namespace SincronizadorQvetSuvesaPOS.Negocio
             {
                 Marca marca1 = new Marca();// modelo
                 marca1 = con.ObtenerResultadosApiVentasSinPagina();
-                long paginas = marca1.RegistrosTotales;
+                long paginas = marca1.PaginasTotales;
                 List<Dato> listaDatos = new List<Dato>();
 
-                for (int i=1;i<=paginas;i++)
+                for (int i=1;i<=2;i++)
                 {
                     marca = con.ObtenerResultadosApiVentas(i);
                     
