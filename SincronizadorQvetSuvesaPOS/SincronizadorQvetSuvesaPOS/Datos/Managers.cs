@@ -137,6 +137,24 @@ namespace SincronizadorQvetSuvesaPOS.Datos
                 throw ex;
             }
         }
+
+        public long ObtenerUltimoIdInsertado()
+        {
+            try
+            {
+                long res = 0;
+                var query = (from c in entities.Albarans
+                             select c.Id_Qvet_Migrado).Max(); ;
+                res = query;
+
+                return res;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         // un metod para validar que no este insertado
 
 
