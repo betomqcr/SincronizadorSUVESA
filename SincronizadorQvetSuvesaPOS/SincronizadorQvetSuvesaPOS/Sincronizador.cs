@@ -48,7 +48,7 @@ namespace SincronizadorQvetSuvesaPOS
                 GLinkApi.linkApi = con.GetUrlApiQvet();
                 GtokenApi.tokenApi = con.GetToken();
                 int res =pro.insertarDatos();
-
+                
                 //con.ObtenerResultadosApiVentas();
                 //man.InsertarAlbaranes(); // borrar solo explicarle a Beto
 
