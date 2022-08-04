@@ -90,7 +90,39 @@ namespace SincronizadorQvetSuvesaPOS.Datos
         }
 
         //un metodo para obtener id del alabaran insertado(id Qvet migrado)
+
+        public bool ExisteAlbaranInsertado(long registro)
+        {
+            try
+            {
+                long res = 0;
+                var query = from c in entities.Albarans
+                            where c.Id_Qvet_Migrado == registro
+                            select c;
+                List<Albaran> lista = query.ToList();
+
+                foreach(Albaran temp in lista)
+                {
+                    res = temp.Id_Qvet_Migrado;
+                }
+                if(res== registro)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         // un metod para validar que no este insertado
+
+
         // metodo para insertar lineas llamar en albaran
 
 
