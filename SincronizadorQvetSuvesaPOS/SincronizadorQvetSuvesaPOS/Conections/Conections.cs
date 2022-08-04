@@ -133,7 +133,7 @@ namespace SincronizadorQvetSuvesaPOS.Conections
         }
 
 
-        public string ObtenerResultadosApiVentas()
+        public Marca ObtenerResultadosApiVentas()
         {
             try
             {
@@ -141,7 +141,7 @@ namespace SincronizadorQvetSuvesaPOS.Conections
                 Solicitud solicitud = new Solicitud();
                 //solicitud.DesdeFechaActualizacion = DateTime.Now.ToShortDateString();
                 solicitud.RegistrosPorPagina = 0;
-                
+                Marca marca = new Marca();
                 using (var client = new HttpClient())
                 {
                     client.DefaultRequestHeaders.Add("Authorization", "Bearer " + GtokenApi.tokenApi);
@@ -156,36 +156,27 @@ namespace SincronizadorQvetSuvesaPOS.Conections
                     HttpResponseMessage message = task.Result;
                     if (message.StatusCode == System.Net.HttpStatusCode.OK)
                     {
-                        Marca marca = new Marca();
+                        
                         var task2 = Task<string>.Run(async () =>
                         {
                             return await message.Content.ReadAsStringAsync();
                         });
                         var jsonstrig = task2.Result;
                         marca = JsonConvert.DeserializeObject<Marca>(jsonstrig);
-                        string resultStr = "";
-                        return resultStr;
+                        
+                        return marca;
                     }
                     else if (message.StatusCode == System.Net.HttpStatusCode.Conflict)
                     {
-                        return "Error de Servidor";
+                        return marca;
                     }
-                    else
-                    {
-                        var task2 = Task<string>.Run(async () =>
-                        {
-                            return await message.Content.ReadAsStringAsync();
-                        });
-                        string mens = task2.Result;
-                        ModelError error = JsonConvert.DeserializeObject<ModelError>(mens);
-                        return error.Exceptionmessage;
-                    }
-
+                    
                 }
+                return marca;
             }
             catch (Exception ex)
             {
-                return ex.Message;
+                throw ex;
             }
         }
     }

@@ -17,6 +17,18 @@ namespace SincronizadorQvetSuvesaPOS.Negocio
 
         }
 
+        public int insertarDatos()
+        {
+            try
+            {
 
+                return 0;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }
