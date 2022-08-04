@@ -39,16 +39,16 @@ namespace SincronizadorQvetSuvesaPOS.Datos
                     a.Tipo_Cliente = dato.Cliente.TipoCliente;
                     a.CHIP_Mascota = (dato.Mascota==null)?" ": dato.Mascota.Chip;
                     a.facturado = false;
-                   // entities.Albarans.Add(a);
-                    //entities.SaveChanges();
+                    entities.Albarans.Add(a);
+                    entities.SaveChanges();
                     resa++;
-                    //long t= ObtenerIdDeAlbaranMigrado(dato.IdAlbaran);
+                    long t = ObtenerIdDeAlbaranMigrado(dato.IdAlbaran);
                     // Consulto id del que inserto
-                    List<Albaran_Detalle> listat = new List<Albaran_Detalle>();  
+                    //List<Albaran_Detalle> listat = new List<Albaran_Detalle>();  
                     foreach (ListaLinea lista in dato.ListaLineas)
                     {
                         Albaran_Detalle d = new Albaran_Detalle();
-                        //d.idEncabezado = t;
+                        d.idEncabezado = t;
                         d.Descripcion = lista.Descripcion;
                         d.CodigoInternoQvet = int.Parse(lista.IdArticulo.ToString());
                         d.IVA = int.Parse(lista.Iva.Valor.ToString());
@@ -56,16 +56,16 @@ namespace SincronizadorQvetSuvesaPOS.Datos
                         d.PrecioVenta = lista.Tarifa.PrecioUnitario;
                         d.Cantidad = lista.Cantidad;
                         d.Total = lista.Total;
-                        //entities.Albaran_Detalle.Add(d);
-                        //entities.SaveChanges();
-                        listat.Add(d);
+                        entities.Albaran_Detalle.Add(d);
+                        entities.SaveChanges();
+                        //listat.Add(d);
                         resb++;
                         
                     }
-                    a.Albaran_Detalle=listat;
+                    //a.Albaran_Detalle=listat;
 
-                    entities.Albarans.Add(a);
-                    entities.SaveChanges();
+                    //entities.Albarans.Add(a);
+                    //entities.SaveChanges();
 
                     // con id del insertado y inserto la lineas
                 }

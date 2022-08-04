@@ -14,6 +14,7 @@ namespace SincronizadorQvetSuvesaPOS.Negocio
         Managers manager = new Managers();
         Conections.Conections con = new Conections.Conections();
         Marca marca = new Marca();// modelo
+        
         public Proccess()
         {
 
@@ -23,13 +24,21 @@ namespace SincronizadorQvetSuvesaPOS.Negocio
         {
             try
             {
-                marca = con.ObtenerResultadosApiVentas();
+                Marca marca1 = new Marca();// modelo
+                marca1 = con.ObtenerResultadosApiVentasSinPagina();
+                long paginas = marca1.RegistrosTotales;
                 List<Dato> listaDatos = new List<Dato>();
-                foreach(Dato datos in marca.Datos)
+
+                for (int i=1;i<=paginas;i++)
                 {
-                    if(!manager.ExisteAlbaranInsertado(datos.IdAlbaran))
+                    marca = con.ObtenerResultadosApiVentas(i);
+                    
+                    foreach (Dato datos in marca.Datos)
                     {
-                        listaDatos.Add(datos);
+                        if (!manager.ExisteAlbaranInsertado(datos.IdAlbaran))
+                        {
+                            listaDatos.Add(datos);
+                        }
                     }
                 }
 

@@ -20,7 +20,7 @@ namespace SincronizadorQvetSuvesaPOS.Datos
         public long CodigoInternoQvet { get; set; }
         public decimal Cantidad { get; set; }
         public long IVA { get; set; }
-        public decimal descuento { get; set; }
+        public Nullable<decimal> descuento { get; set; }
         public decimal PrecioVenta { get; set; }
         public decimal Total { get; set; }
         public string Unidad { get; set; }

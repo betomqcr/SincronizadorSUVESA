@@ -17,7 +17,7 @@ namespace SincronizadorQvetSuvesaPOS.Datos
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Albaran()
         {
-            //this.Albaran_Detalle = new HashSet<Albaran_Detalle>();
+            this.Albaran_Detalle = new HashSet<Albaran_Detalle>();
         }
     
         public long id { get; set; }
@@ -25,13 +25,13 @@ namespace SincronizadorQvetSuvesaPOS.Datos
         public string NombreMascota { get; set; }
         public System.DateTime Fecha { get; set; }
         public long Id_Qvet_Migrado { get; set; }
-        public bool facturado { get; set; }
+        public Nullable<bool> facturado { get; set; }
         public string Cedula { get; set; }
-        public Nullable<int> Id_Mascota_Qvet { get; set; }
+        public Nullable<long> Id_Mascota_Qvet { get; set; }
         public string Email { get; set; }
         public string Direccion { get; set; }
         public string NHC_Mascota { get; set; }
-        public int ID_Factura_Suvesa { get; set; }
+        public Nullable<long> ID_Factura_Suvesa { get; set; }
         public string Responsable { get; set; }
         public string Tipo_Cliente { get; set; }
         public string CHIP_Mascota { get; set; }

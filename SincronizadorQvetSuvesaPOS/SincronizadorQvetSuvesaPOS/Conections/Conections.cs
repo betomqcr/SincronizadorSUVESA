@@ -133,7 +133,7 @@ namespace SincronizadorQvetSuvesaPOS.Conections
         }
 
 
-        public Marca ObtenerResultadosApiVentas()
+        public Marca ObtenerResultadosApiVentas(long pagina)
         {
             try
             {
@@ -141,6 +141,7 @@ namespace SincronizadorQvetSuvesaPOS.Conections
                 Solicitud solicitud = new Solicitud();
                 //solicitud.DesdeFechaActualizacion = DateTime.Now.ToShortDateString();
                 solicitud.RegistrosPorPagina = 0;
+                solicitud.Pagina=pagina;
                 Marca marca = new Marca();
                 using (var client = new HttpClient())
                 {
@@ -171,6 +172,54 @@ namespace SincronizadorQvetSuvesaPOS.Conections
                         return marca;
                     }
                     
+                }
+                return marca;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public Marca ObtenerResultadosApiVentasSinPagina()
+        {
+            try
+            {
+
+                Solicitud1 solicitud = new Solicitud1();
+                //solicitud.DesdeFechaActualizacion = DateTime.Now.ToShortDateString();
+                solicitud.RegistrosPorPagina = 0;
+                //solicitud.Pagina = pagina;
+                Marca marca = new Marca();
+                using (var client = new HttpClient())
+                {
+                    client.DefaultRequestHeaders.Add("Authorization", "Bearer " + GtokenApi.tokenApi);
+                    var task = Task.Run(async () =>
+                    {
+                        return await client.PostAsync(
+                            GLinkApi.linkApi + "/ventas",
+                            new StringContent(solicitud.ToString(), Encoding.UTF8, "application/json")
+                            ); ;
+                    }
+                    );
+                    HttpResponseMessage message = task.Result;
+                    if (message.StatusCode == System.Net.HttpStatusCode.OK)
+                    {
+
+                        var task2 = Task<string>.Run(async () =>
+                        {
+                            return await message.Content.ReadAsStringAsync();
+                        });
+                        var jsonstrig = task2.Result;
+                        marca = JsonConvert.DeserializeObject<Marca>(jsonstrig);
+
+                        return marca;
+                    }
+                    else if (message.StatusCode == System.Net.HttpStatusCode.Conflict)
+                    {
+                        return marca;
+                    }
+
                 }
                 return marca;
             }

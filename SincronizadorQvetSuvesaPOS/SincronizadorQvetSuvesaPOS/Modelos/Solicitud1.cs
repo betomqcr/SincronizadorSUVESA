@@ -9,10 +9,10 @@ using Newtonsoft.Json.Converters;
 
 namespace SincronizadorQvetSuvesaPOS.Modelos
 {
-    public  class Solicitud
+    public  class Solicitud1
     {
-        [JsonProperty("pagina")]
-        public long Pagina { get; set; }
+        //[JsonProperty("pagina")]
+        //public long Pagina { get; set; }
 
         //[JsonProperty("id")]
         //public string Id { get; set; }
