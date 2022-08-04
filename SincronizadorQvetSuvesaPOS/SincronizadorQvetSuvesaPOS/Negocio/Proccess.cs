@@ -37,6 +37,7 @@ namespace SincronizadorQvetSuvesaPOS.Negocio
                     {
                         if (!manager.ExisteAlbaranInsertado(datos.IdAlbaran))
                         {
+                           if(manager.ObtenerUltimoIdInsertado() < datos.IdAlbaran)
                             listaDatos.Add(datos);
                         }
                     }
