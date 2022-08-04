@@ -29,7 +29,7 @@ namespace SincronizadorQvetSuvesaPOS.Negocio
                 long paginas = marca1.PaginasTotales;
                 List<Dato> listaDatos = new List<Dato>();
 
-                for (int i=1;i<=2;i++)
+                for (int i=1;i<=paginas;i++)
                 {
                     marca = con.ObtenerResultadosApiVentas(i);
                     
