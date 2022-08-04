@@ -17,9 +17,9 @@ namespace SincronizadorQvetSuvesaPOS.Datos
         public long id { get; set; }
         public long idEncabezado { get; set; }
         public string Descripcion { get; set; }
-        public int CodigoInternoQvet { get; set; }
+        public long CodigoInternoQvet { get; set; }
         public decimal Cantidad { get; set; }
-        public int IVA { get; set; }
+        public long IVA { get; set; }
         public decimal descuento { get; set; }
         public decimal PrecioVenta { get; set; }
         public decimal Total { get; set; }
