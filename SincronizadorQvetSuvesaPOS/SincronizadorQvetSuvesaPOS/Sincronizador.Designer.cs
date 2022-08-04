@@ -34,7 +34,7 @@
             // st_Inicio
             // 
             this.st_Inicio.Enabled = true;
-            this.st_Inicio.Interval = 60000D;
+            this.st_Inicio.Interval = 10000D;
             this.st_Inicio.Elapsed += new System.Timers.ElapsedEventHandler(this.st_Inicio_Elapsed);
             // 
             // Sincronizador

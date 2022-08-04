@@ -9,17 +9,17 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="NombreCliente" Type="nvarchar" MaxLength="1" Nullable="false" />
-          <Property Name="NombreMascota" Type="nvarchar" MaxLength="1" Nullable="false" />
+          <Property Name="NombreMascota" Type="nvarchar" MaxLength="1" />
           <Property Name="Fecha" Type="datetime" Nullable="false" />
-          <Property Name="Id_Qvet_Migrado" Type="float" Nullable="false" />
+          <Property Name="Id_Qvet_Migrado" Type="bigint" Nullable="false" />
           <Property Name="facturado" Type="bit" Nullable="false" />
-          <Property Name="Cedula" Type="nvarchar" MaxLength="12" Nullable="false" />
-          <Property Name="Id_Mascota_Qvet" Type="int" Nullable="false" />
-          <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Cedula" Type="nvarchar" MaxLength="12" />
+          <Property Name="Id_Mascota_Qvet" Type="int" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
           <Property Name="Direccion" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="NHC_Mascota" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="NHC_Mascota" Type="nvarchar" MaxLength="20" />
           <Property Name="ID_Factura_Suvesa" Type="int" Nullable="false" />
           <Property Name="Responsable" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Tipo_Cliente" Type="nvarchar" MaxLength="50" />
@@ -29,13 +29,13 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="idEncabezado" Type="int" Nullable="false" />
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idEncabezado" Type="bigint" Nullable="false" />
           <Property Name="Descripcion" Type="nvarchar" MaxLength="1" Nullable="false" />
           <Property Name="CodigoInternoQvet" Type="int" Nullable="false" />
           <Property Name="Cantidad" Type="decimal" Precision="10" Scale="4" Nullable="false" />
           <Property Name="IVA" Type="int" Nullable="false" />
-          <Property Name="descuento" Type="float" Nullable="false" />
+          <Property Name="descuento" Type="decimal" Precision="18" Scale="4" Nullable="false" />
           <Property Name="PrecioVenta" Type="decimal" Precision="18" Scale="4" Nullable="false" />
           <Property Name="Total" Type="decimal" Precision="18" Scale="4" Nullable="false" />
           <Property Name="Unidad" Type="nvarchar" MaxLength="50" />
@@ -80,17 +80,17 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NombreCliente" Type="String" MaxLength="1" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="NombreMascota" Type="String" MaxLength="1" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NombreMascota" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
           <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Id_Qvet_Migrado" Type="Int32" Nullable="false" />
+          <Property Name="Id_Qvet_Migrado" Type="Int64" Nullable="false" />
           <Property Name="facturado" Type="Boolean" Nullable="false" />
-          <Property Name="Cedula" Type="String" MaxLength="12" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Id_Mascota_Qvet" Type="Int32" Nullable="false" />
-          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Cedula" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+          <Property Name="Id_Mascota_Qvet" Type="Int32" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Direccion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="NHC_Mascota" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NHC_Mascota" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="ID_Factura_Suvesa" Type="Int32" Nullable="false" />
           <Property Name="Responsable" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Tipo_Cliente" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -101,13 +101,13 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="idEncabezado" Type="Int32" Nullable="false" />
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idEncabezado" Type="Int64" Nullable="false" />
           <Property Name="Descripcion" Type="String" MaxLength="1" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="CodigoInternoQvet" Type="Int32" Nullable="false" />
           <Property Name="Cantidad" Type="Decimal" Precision="10" Scale="4" Nullable="false" />
           <Property Name="IVA" Type="Int32" Nullable="false" />
-          <Property Name="descuento" Type="Double" Nullable="false" />
+          <Property Name="descuento" Type="Decimal" Precision="18" Scale="4" Nullable="false" />
           <Property Name="PrecioVenta" Type="Decimal" Precision="18" Scale="4" Nullable="false" />
           <Property Name="Total" Type="Decimal" Precision="18" Scale="4" Nullable="false" />
           <Property Name="Unidad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />

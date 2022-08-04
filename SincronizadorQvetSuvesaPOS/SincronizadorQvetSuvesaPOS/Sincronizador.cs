@@ -18,6 +18,7 @@ namespace SincronizadorQvetSuvesaPOS
         Conections.Conections con = new Conections.Conections();
         Managers man = new Managers(); //Borrar solo para explicarle a Beto
         bool bandera= false;
+        Negocio.Proccess pro = new Negocio.Proccess();
 
         public Sincronizador()
         {
@@ -44,9 +45,9 @@ namespace SincronizadorQvetSuvesaPOS
             {
                 bandera = true;
 
-                //GLinkApi.linkApi = con.GetUrlApiQvet();
-                //GtokenApi.tokenApi = con.GetToken();
-
+                GLinkApi.linkApi = con.GetUrlApiQvet();
+                GtokenApi.tokenApi = con.GetToken();
+                int res =pro.insertarDatos();
 
                 //con.ObtenerResultadosApiVentas();
                 //man.InsertarAlbaranes(); // borrar solo explicarle a Beto

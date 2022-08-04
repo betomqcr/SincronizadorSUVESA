@@ -14,7 +14,7 @@ namespace SincronizadorQvetSuvesaPOS.Modelos
         public long IdMascota { get; set; }
 
         [JsonProperty("id_cliente")]
-        public long IdCliente { get; set; }
+        public long? IdCliente { get; set; }
 
         [JsonProperty("nombre")]
         public string Nombre { get; set; }
@@ -29,7 +29,7 @@ namespace SincronizadorQvetSuvesaPOS.Modelos
         public object FechaChip { get; set; }
 
         [JsonProperty("apto_para_consumo")]
-        public bool AptoParaConsumo { get; set; }
+        public bool? AptoParaConsumo { get; set; }
 
         [JsonProperty("especie")]
         public string Especie { get; set; }
@@ -74,16 +74,16 @@ namespace SincronizadorQvetSuvesaPOS.Modelos
         public string Estado { get; set; }
 
         [JsonProperty("pedigri")]
-        public bool Pedigri { get; set; }
+        public bool? Pedigri { get; set; }
 
         [JsonProperty("fecha_nacimiento")]
-        public DateTimeOffset FechaNacimiento { get; set; }
+        public DateTimeOffset? FechaNacimiento { get; set; }
 
         [JsonProperty("peso")]
-        public long Peso { get; set; }
+        public long? Peso { get; set; }
 
         [JsonProperty("donante_sangre")]
-        public bool DonanteSangre { get; set; }
+        public bool? DonanteSangre { get; set; }
 
         [JsonProperty("tipo_sangre")]
         public object TipoSangre { get; set; }
@@ -98,12 +98,12 @@ namespace SincronizadorQvetSuvesaPOS.Modelos
         public string VeterinarioHabitual { get; set; }
 
         [JsonProperty("ultima_visita")]
-        public DateTimeOffset UltimaVisita { get; set; }
+        public DateTimeOffset? UltimaVisita { get; set; }
 
         [JsonProperty("ultimo_veterinario_referente")]
         public object UltimoVeterinarioReferente { get; set; }
 
         [JsonProperty("fecha_alta")]
-        public DateTimeOffset FechaAlta { get; set; }
+        public DateTimeOffset? FechaAlta { get; set; }
     }
 }

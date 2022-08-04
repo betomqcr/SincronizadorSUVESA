@@ -28,10 +28,10 @@ namespace SincronizadorQvetSuvesaPOS.Modelos
         public object Referidor { get; set; }
 
         [JsonProperty("tarifa")]
-        public Tarifa Tarifa { get; set; }
+        public object Tarifa { get; set; }
 
         [JsonProperty("fecha")]
-        public DateTime Fecha { get; set; }
+        public object Fecha { get; set; }
 
         [JsonProperty("almacen")]
         public string Almacen { get; set; }

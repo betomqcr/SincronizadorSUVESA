@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using SincronizadorQvetSuvesaPOS.Datos;
 using SincronizadorQvetSuvesaPOS.Conections;
+using SincronizadorQvetSuvesaPOS.Modelos;
 
 namespace SincronizadorQvetSuvesaPOS.Negocio
 {
@@ -12,6 +13,7 @@ namespace SincronizadorQvetSuvesaPOS.Negocio
     {
         Managers manager = new Managers();
         Conections.Conections con = new Conections.Conections();
+        Marca marca = new Marca();// modelo
         public Proccess()
         {
 
@@ -21,8 +23,25 @@ namespace SincronizadorQvetSuvesaPOS.Negocio
         {
             try
             {
+                marca = con.ObtenerResultadosApiVentas();
+                List<Dato> listaDatos = new List<Dato>();
+                foreach(Dato datos in marca.Datos)
+                {
+                    if(!manager.ExisteAlbaranInsertado(datos.IdAlbaran))
+                    {
+                        listaDatos.Add(datos);
+                    }
+                }
 
-                return 0;
+                if(listaDatos.Count !=0 || listaDatos != null)
+                {
+                    int res =manager.InsertarAlbaranes(listaDatos);
+                    return res;
+                }
+                else
+                {
+                    return 0;
+                }
 
             }
             catch (Exception ex)

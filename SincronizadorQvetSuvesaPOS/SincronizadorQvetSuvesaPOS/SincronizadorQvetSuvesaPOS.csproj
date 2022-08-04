@@ -62,28 +62,28 @@
   <ItemGroup>
     <Compile Include="Conections\Conections.cs" />
     <Compile Include="Datos\Albaran.cs">
-      <DependentUpon>BaseDeDatos.tt</DependentUpon>
+      <DependentUpon>BaseDatosModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Datos\Albaran_Detalle.cs">
-      <DependentUpon>BaseDeDatos.tt</DependentUpon>
+      <DependentUpon>BaseDatosModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Datos\BaseDeDatos.Context.cs">
+    <Compile Include="Datos\BaseDatosModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>BaseDeDatos.Context.tt</DependentUpon>
+      <DependentUpon>BaseDatosModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Datos\BaseDeDatos.cs">
+    <Compile Include="Datos\BaseDatosModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>BaseDeDatos.tt</DependentUpon>
+      <DependentUpon>BaseDatosModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Datos\BaseDeDatos.Designer.cs">
+    <Compile Include="Datos\BaseDatosModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>BaseDeDatos.edmx</DependentUpon>
+      <DependentUpon>BaseDatosModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Datos\Bitacora_Albaran.cs">
-      <DependentUpon>BaseDeDatos.tt</DependentUpon>
+      <DependentUpon>BaseDatosModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Datos\Managers.cs" />
     <Compile Include="Modelos\GtokenApi.cs" />
@@ -122,26 +122,14 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <EntityDeploy Include="Datos\BaseDeDatos.edmx">
+    <EntityDeploy Include="Datos\BaseDatosModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>BaseDeDatos.Designer.cs</LastGenOutput>
+      <LastGenOutput>BaseDatosModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Datos\BaseDeDatos.edmx.diagram">
-      <DependentUpon>BaseDeDatos.edmx</DependentUpon>
+    <None Include="Datos\BaseDatosModel.edmx.diagram">
+      <DependentUpon>BaseDatosModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Datos\BaseDeDatos.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>BaseDeDatos.edmx</DependentUpon>
-      <LastGenOutput>BaseDeDatos.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Datos\BaseDeDatos.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>BaseDeDatos.edmx</DependentUpon>
-      <LastGenOutput>BaseDeDatos.cs</LastGenOutput>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -150,6 +138,18 @@
     <EmbeddedResource Include="Sincronizador.resx">
       <DependentUpon>Sincronizador.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Datos\BaseDatosModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>BaseDatosModel.edmx</DependentUpon>
+      <LastGenOutput>BaseDatosModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Datos\BaseDatosModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>BaseDatosModel.edmx</DependentUpon>
+      <LastGenOutput>BaseDatosModel.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -21,48 +21,65 @@ namespace SincronizadorQvetSuvesaPOS.Datos
         {
             try
             {
+                int resa = 0;
+                int resb = 0;
                 foreach (Dato dato in datos)
                 {
                     Albaran a = new Albaran();
                     a.NombreCliente = dato.Cliente.Nombre;
-                    a.NombreMascota = dato.Mascota.Nombre;
-                    a.Fecha = dato.Fecha;
+                    a.NombreMascota = (dato.Mascota==null)?" ": dato.Mascota.Nombre;
+                    a.Fecha = DateTime.Parse(dato.Fecha.ToString());
                     a.Id_Qvet_Migrado = dato.IdAlbaran;
                     a.Cedula = dato.Cliente.Documento;
-                    a.Id_Mascota_Qvet = dato.Mascota.IdMascota;
+                    a.Id_Mascota_Qvet = (dato.Mascota==null)?0 : int.Parse(dato.Mascota.IdMascota.ToString());
                     a.Email = dato.Cliente.Email;
                     a.Direccion = dato.Cliente.Domicilio;
-                    a.NHC_Mascota = dato.Mascota.Nhc;
+                    a.NHC_Mascota = (dato.Mascota== null)?" ": dato.Mascota.Nhc;
                     a.Responsable = dato.ResponsableVenta;
                     a.Tipo_Cliente = dato.Cliente.TipoCliente;
-                    a.CHIP_Mascota = dato.Mascota.Chip;
+                    a.CHIP_Mascota = (dato.Mascota==null)?" ": dato.Mascota.Chip;
                     a.facturado = false;
-                    entities.Albarans.Add(a);
-                    return entities.SaveChanges();
-
-                    long t= ObtenerIdDeAlbaranMigrado(dato.IdAlbaran);
+                   // entities.Albarans.Add(a);
+                    //entities.SaveChanges();
+                    resa++;
+                    //long t= ObtenerIdDeAlbaranMigrado(dato.IdAlbaran);
                     // Consulto id del que inserto
-
+                    List<Albaran_Detalle> listat = new List<Albaran_Detalle>();  
                     foreach (ListaLinea lista in dato.ListaLineas)
                     {
                         Albaran_Detalle d = new Albaran_Detalle();
-                        d.idEncabezado = t;
+                        //d.idEncabezado = t;
                         d.Descripcion = lista.Descripcion;
-                        d.CodigoInternoQvet = lista.IdArticulo;
-                        d.IVA = lista.Iva.Valor;
+                        d.CodigoInternoQvet = int.Parse(lista.IdArticulo.ToString());
+                        d.IVA = int.Parse(lista.Iva.Valor.ToString());
                         d.descuento = lista.Descuento;
                         d.PrecioVenta = lista.Tarifa.PrecioUnitario;
                         d.Cantidad = lista.Cantidad;
                         d.Total = lista.Total;
+                        //entities.Albaran_Detalle.Add(d);
+                        //entities.SaveChanges();
+                        listat.Add(d);
+                        resb++;
                         
                     }
+                    a.Albaran_Detalle=listat;
+
+                    entities.Albarans.Add(a);
+                    entities.SaveChanges();
+
                     // con id del insertado y inserto la lineas
                 }
+                if (resa==0 && resb==0)
+                
+                    return 0;
+                
+                else
+                    return resa;
                 
             }
             catch(Exception ex)
             {
-
+                throw ex;
             }
             return 0; 
         }

@@ -128,7 +128,7 @@ namespace SincronizadorQvetSuvesaPOS.Modelos
         public object UltimaModificacion { get; set; }
 
         [JsonProperty("fecha_alta")]
-        public DateTimeOffset FechaAlta { get; set; }
+        public DateTimeOffset? FechaAlta { get; set; }
 
         [JsonProperty("laclinica_usuario")]
         public object LaclinicaUsuario { get; set; }
