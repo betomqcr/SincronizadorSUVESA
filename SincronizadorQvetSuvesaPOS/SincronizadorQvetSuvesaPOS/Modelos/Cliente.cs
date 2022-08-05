@@ -110,7 +110,7 @@ namespace SincronizadorQvetSuvesaPOS.Modelos
         public long TipoComunicacion { get; set; }
 
         [JsonProperty("guid")]
-        public Guid Guid { get; set; }
+        public Guid? Guid { get; set; }
 
         [JsonProperty("rgpd_autoriza_uso_datos_prestacion_servicio")]
         public bool RgpdAutorizaUsoDatosPrestacionServicio { get; set; }

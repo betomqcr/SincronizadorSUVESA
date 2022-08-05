@@ -139,10 +139,13 @@ namespace SincronizadorQvetSuvesaPOS.Conections
             {
                 
                 Solicitud solicitud = new Solicitud();
-                //solicitud.DesdeFechaActualizacion = DateTime.Now.ToShortDateString();
-                solicitud.RegistrosPorPagina = 0;
-                solicitud.Pagina=pagina;
+
+                solicitud.DesdeFechaActualizacion = "2022-08-04";
+                //solicitud.RegistrosPorPagina = 0;
+                solicitud.Pagina = pagina;
+
                 Marca marca = new Marca();
+
                 using (var client = new HttpClient())
                 {
                     client.DefaultRequestHeaders.Add("Authorization", "Bearer " + GtokenApi.tokenApi);
@@ -181,16 +184,21 @@ namespace SincronizadorQvetSuvesaPOS.Conections
             }
         }
 
+
         public Marca ObtenerResultadosApiVentasSinPagina()
         {
             try
             {
 
-                Solicitud1 solicitud = new Solicitud1();
+                Solicitud solicitud = new Solicitud();
+
                 //solicitud.DesdeFechaActualizacion = DateTime.Now.ToShortDateString();
-                solicitud.RegistrosPorPagina = 0;
-                //solicitud.Pagina = pagina;
+                solicitud.DesdeFechaActualizacion = "2022-08-04";
+                //solicitud.RegistrosPorPagina = 0;
+
+                solicitud.Pagina = 1;
                 Marca marca = new Marca();
+
                 using (var client = new HttpClient())
                 {
                     client.DefaultRequestHeaders.Add("Authorization", "Bearer " + GtokenApi.tokenApi);

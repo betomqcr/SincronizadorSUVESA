@@ -138,16 +138,16 @@ namespace SincronizadorQvetSuvesaPOS.Datos
             }
         }
 
-        public long? ObtenerUltimoIdInsertado()
+        public long ObtenerUltimoIdInsertado()
         {
             try
             {
                 var id = from c in entities.Albarans
-                         select c.Id_Mascota_Qvet;
+                         select c.Id_Qvet_Migrado;
 
-                List<long?> numbers = id.ToList();
-
-                return (numbers.Max() != null) ? numbers.Max() : 0;
+                List<long> numbers = id.ToList();
+                var tet = numbers.Max();
+                return numbers.Max();
                
             }
             catch (Exception ex)
