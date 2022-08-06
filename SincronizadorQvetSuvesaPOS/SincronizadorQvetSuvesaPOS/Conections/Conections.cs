@@ -13,21 +13,20 @@ namespace SincronizadorQvetSuvesaPOS.Conections
 {
     public class Conections
     {
-        public string linkAPI = "";
-        public Conections()
-        {
-            linkAPI = GetUrlApiQvet();
-        }
+        public Conections() { }
 
-        public  string GetUrlApiQvet()
+        public string GetUrlApiQvet()
         {
             try
             {
                 string url = ConfigurationSettings.AppSettings["RutaApiUrl"].ToString();
                 string id = ConfigurationSettings.AppSettings["QvetWS"].ToString();
 
-                Link link = new Link();
-                link.id = id;
+                Link link = new Link()
+                {
+                    id = id,
+                };
+
                 using (var client = new HttpClient())
                 {
                     var task = Task.Run(async () =>
@@ -66,13 +65,10 @@ namespace SincronizadorQvetSuvesaPOS.Conections
                         return error.Exceptionmessage;
                     }
                 }
-
-
             }
             catch (Exception ex)
             {
-                return ex.Message;
-
+                throw ex;
             }
         }
 

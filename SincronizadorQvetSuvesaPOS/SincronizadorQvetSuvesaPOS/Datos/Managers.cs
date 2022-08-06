@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SincronizadorQvetSuvesaPOS.Datos;
+using SincronizadorQvetSuvesaPOS.Helpers;
 using SincronizadorQvetSuvesaPOS.Modelos;
 
 namespace SincronizadorQvetSuvesaPOS.Datos
@@ -70,19 +71,20 @@ namespace SincronizadorQvetSuvesaPOS.Datos
 
                     // con id del insertado y inserto la lineas
                 }
+
+                //Verificar los datos de los contadores y escribrir el archivo
+                EscrituraArchivo.escribirArchivo(tipoEscritura.CantidadAlbaranes, resa.ToString());
+                EscrituraArchivo.escribirArchivo(tipoEscritura.CantidadLineasAlbaranes, resb.ToString());
+
                 if (resa==0 && resb==0)
-                
                     return 0;
-                
                 else
                     return resa;
-                
             }
             catch(Exception ex)
             {
                 throw ex;
             }
-            return 0; 
         }
 
         public long ObtenerIdDeAlbaranMigrado(long id)

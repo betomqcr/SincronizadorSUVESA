@@ -6,9 +6,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.ServiceProcess;
 using System.Text;
-using System.Threading.Tasks;
-using SincronizadorQvetSuvesaPOS.Conections;
-using SincronizadorQvetSuvesaPOS.Datos;
+using SincronizadorQvetSuvesaPOS.Helpers;
 using SincronizadorQvetSuvesaPOS.Modelos;
 
 namespace SincronizadorQvetSuvesaPOS
@@ -45,12 +43,33 @@ namespace SincronizadorQvetSuvesaPOS
 
             try
             {
+                // Iniciar el tiempo aqui
+                Stopwatch stopWatch = new Stopwatch();
+                stopWatch.Start();
+
                 bandera = true;
+
+                // Establece el nombre del archivo de texto
+                EscrituraArchivo.nameFile = $"SincronizadorSuvesa{DateTime.Now.ToString("yyyyMMddTHHmmss")}";
+
+                // Escribe Hora Inicial
+                EscrituraArchivo.escribirArchivo(tipoEscritura.HoraInicio, DateTime.Now.ToString());
 
                 GLinkApi.linkApi = con.GetUrlApiQvet();
                 GtokenApi.tokenApi = con.GetToken();
+
                 int res = pro.insertarDatos();
 
+                // Escribe Hora Final
+                EscrituraArchivo.escribirArchivo(tipoEscritura.HoraFinal, DateTime.Now.ToString());
+
+                // Escribe Tiempo Empleado
+                stopWatch.Stop();
+                TimeSpan ts = stopWatch.Elapsed;
+                string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:00}",
+                                                    ts.Hours, ts.Minutes, ts.Seconds,
+                                                    ts.Milliseconds / 10);
+                EscrituraArchivo.escribirArchivo(tipoEscritura.TiempoEmpleado, elapsedTime);
 
                 bandera = false;
 
@@ -58,9 +77,10 @@ namespace SincronizadorQvetSuvesaPOS
             }
             catch(Exception ex)
             {
-                // VER VIDEO PARA VER COMO SE ESCRIBE EL LOG
+                EventLog.WriteEntry(ex.Message, EventLogEntryType.Error);
             }
             
         }
+
     }
 }
