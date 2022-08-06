@@ -15,9 +15,10 @@ namespace SincronizadorQvetSuvesaPOS
 {
     partial class Sincronizador : ServiceBase
     {
-        Conections.Conections con = new Conections.Conections();
-        Managers man = new Managers(); //Borrar solo para explicarle a Beto
+
+        // Variables globales
         bool bandera= false;
+        Conections.Conections con = new Conections.Conections();
         Negocio.Proccess pro = new Negocio.Proccess();
 
         public Sincronizador()
@@ -41,25 +42,25 @@ namespace SincronizadorQvetSuvesaPOS
         private void st_Inicio_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
             if (bandera) return;
+
             try
             {
                 bandera = true;
 
                 GLinkApi.linkApi = con.GetUrlApiQvet();
                 GtokenApi.tokenApi = con.GetToken();
-                int res =pro.insertarDatos();
-                
-                //con.ObtenerResultadosApiVentas();
-                //man.InsertarAlbaranes(); // borrar solo explicarle a Beto
+                int res = pro.insertarDatos();
 
+
+                bandera = false;
 
                 OnStop();
             }
             catch(Exception ex)
             {
-
+                // VER VIDEO PARA VER COMO SE ESCRIBE EL LOG
             }
-            bandera = false;
+            
         }
     }
 }

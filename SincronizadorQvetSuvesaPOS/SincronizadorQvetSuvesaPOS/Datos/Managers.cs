@@ -12,6 +12,7 @@ namespace SincronizadorQvetSuvesaPOS.Datos
     public  class Managers
     {
         public SINCRONIZADOREntities entities;
+
         public Managers()
         {
             entities = new SINCRONIZADOREntities();
@@ -146,8 +147,10 @@ namespace SincronizadorQvetSuvesaPOS.Datos
                          select c.Id_Qvet_Migrado;
 
                 List<long> numbers = id.ToList();
-                var tet = numbers.Max();
-                return numbers.Max();
+                if(numbers.Count > 0)
+                    return numbers.Max();
+
+                return 0;
                
             }
             catch (Exception ex)

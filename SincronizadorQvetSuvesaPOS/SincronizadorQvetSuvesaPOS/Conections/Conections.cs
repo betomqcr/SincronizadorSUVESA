@@ -17,7 +17,6 @@ namespace SincronizadorQvetSuvesaPOS.Conections
         public Conections()
         {
             linkAPI = GetUrlApiQvet();
-
         }
 
         public  string GetUrlApiQvet()
@@ -132,17 +131,16 @@ namespace SincronizadorQvetSuvesaPOS.Conections
             }
         }
 
-
         public Marca ObtenerResultadosApiVentas(long pagina)
         {
             try
             {
-                
-                Solicitud solicitud = new Solicitud();
 
-                solicitud.DesdeFechaActualizacion = "2022-08-04";
-                //solicitud.RegistrosPorPagina = 0;
-                solicitud.Pagina = pagina;
+                Solicitud solicitud = new Solicitud()
+                {
+                    DesdeFechaActualizacion = DateTime.Now.ToString("yyyy/MM/dd"),
+                    Pagina = pagina
+                };
 
                 Marca marca = new Marca();
 
@@ -184,52 +182,106 @@ namespace SincronizadorQvetSuvesaPOS.Conections
             }
         }
 
+        //public Marca ObtenerResultadosApiVentasSinPagina()
+        //{
+        //    try
+        //    {
 
-        public Marca ObtenerResultadosApiVentasSinPagina()
+        //        Solicitud solicitud = new Solicitud()
+        //        {
+        //            DesdeFechaActualizacion = "2022-08-05",
+        //            Pagina = 1
+        //        };
+
+        //        //solicitud.DesdeFechaActualizacion = DateTime.Now.ToShortDateString();
+        //        Marca marca = new Marca();
+
+        //        using (var client = new HttpClient())
+        //        {
+        //            client.DefaultRequestHeaders.Add("Authorization", "Bearer " + GtokenApi.tokenApi);
+
+        //            var task = Task.Run(async () =>
+        //            {
+        //                return await client.PostAsync(
+        //                    GLinkApi.linkApi + "/ventas",
+        //                    new StringContent(solicitud.ToString(), Encoding.UTF8, "application/json")); ;
+        //            });
+
+        //            HttpResponseMessage message = task.Result;
+
+        //            if (message.StatusCode == System.Net.HttpStatusCode.OK)
+        //            {
+        //                var task2 = Task<string>.Run(async () =>
+        //                {
+        //                    return await message.Content.ReadAsStringAsync();
+        //                });
+
+        //                var jsonstrig = task2.Result;
+
+        //                marca = JsonConvert.DeserializeObject<Marca>(jsonstrig);
+
+        //                return marca.PaginasTotales;
+        //            }
+        //            else if (message.StatusCode == System.Net.HttpStatusCode.Conflict)
+        //            {
+        //                return marca;
+        //            }
+
+        //        }
+        //        return marca;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+        //}
+
+        public long ObtenerPaginasTotales()
         {
             try
             {
 
-                Solicitud solicitud = new Solicitud();
+                Solicitud solicitud = new Solicitud()
+                {
+                    DesdeFechaActualizacion = DateTime.Now.ToString("yyyy/MM/dd"),
+                    Pagina = 1
+                };
 
-                //solicitud.DesdeFechaActualizacion = DateTime.Now.ToShortDateString();
-                solicitud.DesdeFechaActualizacion = "2022-08-04";
-                //solicitud.RegistrosPorPagina = 0;
-
-                solicitud.Pagina = 1;
                 Marca marca = new Marca();
 
                 using (var client = new HttpClient())
                 {
                     client.DefaultRequestHeaders.Add("Authorization", "Bearer " + GtokenApi.tokenApi);
+
                     var task = Task.Run(async () =>
                     {
                         return await client.PostAsync(
                             GLinkApi.linkApi + "/ventas",
-                            new StringContent(solicitud.ToString(), Encoding.UTF8, "application/json")
-                            ); ;
-                    }
-                    );
+                            new StringContent(solicitud.ToString(), Encoding.UTF8, "application/json")); ;
+                    });
+
                     HttpResponseMessage message = task.Result;
+
                     if (message.StatusCode == System.Net.HttpStatusCode.OK)
                     {
-
                         var task2 = Task<string>.Run(async () =>
                         {
                             return await message.Content.ReadAsStringAsync();
                         });
+
                         var jsonstrig = task2.Result;
+
                         marca = JsonConvert.DeserializeObject<Marca>(jsonstrig);
 
-                        return marca;
+                        return marca.PaginasTotales;
                     }
                     else if (message.StatusCode == System.Net.HttpStatusCode.Conflict)
                     {
-                        return marca;
+                        return 0;
                     }
 
                 }
-                return marca;
+                return 0;
             }
             catch (Exception ex)
             {
