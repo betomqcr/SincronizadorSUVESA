@@ -16,6 +16,7 @@ namespace SincronizadorQvetSuvesaPOS
 
         // Variables globales
         bool bandera= false;
+        string[] test;
         Conections.Conections con = new Conections.Conections();
         Negocio.Proccess pro = new Negocio.Proccess();
 
@@ -28,7 +29,7 @@ namespace SincronizadorQvetSuvesaPOS
         {
             // TODO: agregar código aquí para iniciar el servicio.
             st_Inicio.Start();
-
+            test = args;
         }
 
         protected override void OnStop()
@@ -43,6 +44,17 @@ namespace SincronizadorQvetSuvesaPOS
 
             try
             {
+                EventLog.WriteEntry("Hola", EventLogEntryType.Error);
+
+                if(test != null)
+                {
+                    foreach (string arg in test)
+                    {
+                        EventLog.WriteEntry(arg, EventLogEntryType.Information);
+                    }
+                }
+
+
                 // Iniciar el tiempo aqui
                 Stopwatch stopWatch = new Stopwatch();
                 stopWatch.Start();

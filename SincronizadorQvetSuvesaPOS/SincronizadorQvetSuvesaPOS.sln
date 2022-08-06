@@ -5,6 +5,8 @@ VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SincronizadorQvetSuvesaPOS", "SincronizadorQvetSuvesaPOS\SincronizadorQvetSuvesaPOS.csproj", "{7B83C46B-D721-41EB-A3BE-98C7F08B5AB3}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "ServiciosWindows.Installer", "ServiciosWindows.Installer\ServiciosWindows.Installer.vdproj", "{4DD00BDC-D306-4B2F-814B-B632B0B6D73A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,8 @@ Global
 		{7B83C46B-D721-41EB-A3BE-98C7F08B5AB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7B83C46B-D721-41EB-A3BE-98C7F08B5AB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7B83C46B-D721-41EB-A3BE-98C7F08B5AB3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4DD00BDC-D306-4B2F-814B-B632B0B6D73A}.Debug|Any CPU.ActiveCfg = Debug
+		{4DD00BDC-D306-4B2F-814B-B632B0B6D73A}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

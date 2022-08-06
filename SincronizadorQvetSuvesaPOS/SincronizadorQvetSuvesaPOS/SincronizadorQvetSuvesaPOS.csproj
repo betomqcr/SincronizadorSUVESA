@@ -47,7 +47,9 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Management" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Windows.Forms" />
@@ -107,6 +109,12 @@
     <Compile Include="Modelos\Tarifa.cs" />
     <Compile Include="Modelos\Token.cs" />
     <Compile Include="Negocio\Proccess.cs" />
+    <Compile Include="ProjectInstaller.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ProjectInstaller.Designer.cs">
+      <DependentUpon>ProjectInstaller.cs</DependentUpon>
+    </Compile>
     <Compile Include="Service1.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -137,6 +145,9 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="ProjectInstaller.resx">
+      <DependentUpon>ProjectInstaller.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Sincronizador.resx">
       <DependentUpon>Sincronizador.cs</DependentUpon>
     </EmbeddedResource>
