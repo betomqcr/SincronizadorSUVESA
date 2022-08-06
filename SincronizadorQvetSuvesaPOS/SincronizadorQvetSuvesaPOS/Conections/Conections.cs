@@ -15,7 +15,7 @@ namespace SincronizadorQvetSuvesaPOS.Conections
     {
         public Conections() { }
 
-        public string GetUrlApiQvet()
+        public string GetUrlApiQvet()//obtener la url del api a consultar
         {
             try
             {
@@ -72,7 +72,7 @@ namespace SincronizadorQvetSuvesaPOS.Conections
             }
         }
 
-        public string GetToken()
+        public string GetToken()// obtener token del api
         {
             try
             {
@@ -127,7 +127,7 @@ namespace SincronizadorQvetSuvesaPOS.Conections
             }
         }
 
-        public Marca ObtenerResultadosApiVentas(long pagina)
+        public Marca ObtenerResultadosApiVentas(long pagina)// obtener las ventas del api
         {
             try
             {
@@ -178,61 +178,7 @@ namespace SincronizadorQvetSuvesaPOS.Conections
             }
         }
 
-        //public Marca ObtenerResultadosApiVentasSinPagina()
-        //{
-        //    try
-        //    {
-
-        //        Solicitud solicitud = new Solicitud()
-        //        {
-        //            DesdeFechaActualizacion = "2022-08-05",
-        //            Pagina = 1
-        //        };
-
-        //        //solicitud.DesdeFechaActualizacion = DateTime.Now.ToShortDateString();
-        //        Marca marca = new Marca();
-
-        //        using (var client = new HttpClient())
-        //        {
-        //            client.DefaultRequestHeaders.Add("Authorization", "Bearer " + GtokenApi.tokenApi);
-
-        //            var task = Task.Run(async () =>
-        //            {
-        //                return await client.PostAsync(
-        //                    GLinkApi.linkApi + "/ventas",
-        //                    new StringContent(solicitud.ToString(), Encoding.UTF8, "application/json")); ;
-        //            });
-
-        //            HttpResponseMessage message = task.Result;
-
-        //            if (message.StatusCode == System.Net.HttpStatusCode.OK)
-        //            {
-        //                var task2 = Task<string>.Run(async () =>
-        //                {
-        //                    return await message.Content.ReadAsStringAsync();
-        //                });
-
-        //                var jsonstrig = task2.Result;
-
-        //                marca = JsonConvert.DeserializeObject<Marca>(jsonstrig);
-
-        //                return marca.PaginasTotales;
-        //            }
-        //            else if (message.StatusCode == System.Net.HttpStatusCode.Conflict)
-        //            {
-        //                return marca;
-        //            }
-
-        //        }
-        //        return marca;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw ex;
-        //    }
-        //}
-
-        public long ObtenerPaginasTotales()
+        public long ObtenerPaginasTotales()// obtener las paginas del resulta del api
         {
             try
             {
