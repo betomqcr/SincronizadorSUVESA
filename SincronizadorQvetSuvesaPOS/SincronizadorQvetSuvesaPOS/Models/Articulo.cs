@@ -158,5 +158,15 @@ namespace SincronizadorQvetSuvesaPOS.Models
 
         [JsonProperty("lotes")]
         public List<Lote> Lotes { get; set; }
+
+        public string ToJsonString()
+        {
+            return JsonConvert.SerializeObject(this, Formatting.None);
+        }
+
+        public override string ToString()
+        {
+            return ToJsonString();
+        }
     }
 }

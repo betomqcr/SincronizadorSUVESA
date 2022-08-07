@@ -8,6 +8,7 @@ using Newtonsoft.Json;
 using System.Net.Http;
 using System.Configuration;
 using System.Net.Http.Headers;
+using SincronizadorQvetSuvesaPOS.Models;
 
 namespace SincronizadorQvetSuvesaPOS.Conections
 {
@@ -127,7 +128,7 @@ namespace SincronizadorQvetSuvesaPOS.Conections
             }
         }
 
-        public Marca ObtenerResultadosApiVentas(long pagina)// obtener las ventas del api
+        public Modelos.Marca ObtenerResultadosApiVentas(long pagina)// obtener las ventas del api
         {
             try
             {
@@ -138,7 +139,7 @@ namespace SincronizadorQvetSuvesaPOS.Conections
                     Pagina = pagina
                 };
 
-                Marca marca = new Marca();
+                Modelos.Marca marca = new Modelos.Marca();
 
                 using (var client = new HttpClient())
                 {
@@ -160,7 +161,7 @@ namespace SincronizadorQvetSuvesaPOS.Conections
                             return await message.Content.ReadAsStringAsync();
                         });
                         var jsonstrig = task2.Result;
-                        marca = JsonConvert.DeserializeObject<Marca>(jsonstrig);
+                        marca = JsonConvert.DeserializeObject<Modelos.Marca>(jsonstrig);
                         
                         return marca;
                     }
@@ -189,7 +190,7 @@ namespace SincronizadorQvetSuvesaPOS.Conections
                     Pagina = 1
                 };
 
-                Marca marca = new Marca();
+                Modelos.Marca marca = new Modelos.Marca();
 
                 using (var client = new HttpClient())
                 {
@@ -213,7 +214,7 @@ namespace SincronizadorQvetSuvesaPOS.Conections
 
                         var jsonstrig = task2.Result;
 
-                        marca = JsonConvert.DeserializeObject<Marca>(jsonstrig);
+                        marca = JsonConvert.DeserializeObject<Modelos.Marca>(jsonstrig);
 
                         return marca.PaginasTotales;
                     }
@@ -231,15 +232,45 @@ namespace SincronizadorQvetSuvesaPOS.Conections
             }
         }
 
-        public bool CrearoActualizarArticulos()
+        public string CrearoActualizarArticulos(Articulo Articulo)
         {
             try
             {
-                return false;
+                        using (var client = new HttpClient())
+                        {
+                            var task = Task.Run(async () =>
+                            {
+                                return await client.PutAsync(
+                                   GLinkApi.linkApi + "/articulos",
+                                    new StringContent(Articulo.ToString(), Encoding.UTF8, "application/json")
+                                );
+                            }
+                            );
+                            HttpResponseMessage message = task.Result;
+                            if (message.StatusCode == System.Net.HttpStatusCode.OK)
+                            {
+                                return "1";
+                            }
+                            else if (message.StatusCode == System.Net.HttpStatusCode.NotFound)
+                            {
+                                return "0";
+                            }
+                            else
+                            {
+                                var task2 = Task<string>.Run(async () =>
+                                {
+                                    return await message.Content.ReadAsStringAsync();
+                                });
+                                string mens = task2.Result;
+                                ModelError error = JsonConvert.DeserializeObject<ModelError>(mens);
+                                return error.Exceptionmessage;
+                            }
+                        }
+                   
             }
             catch(Exception ex)
             {
-                throw ex
+                throw ex;
             }
         }
     }
