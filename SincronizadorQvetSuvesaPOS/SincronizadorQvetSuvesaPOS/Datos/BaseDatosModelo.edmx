@@ -51,6 +51,104 @@
           <Property Name="usuario" Type="nvarchar" MaxLength="1" Nullable="false" />
           <Property Name="CantidadRegistrosProcesados" Type="numeric" Precision="18" Scale="4" Nullable="false" />
         </EntityType>
+        <EntityType Name="Inventario">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="bigint" Nullable="false" />
+          <Property Name="Cod_Articulo" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Barras" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="PresentaCant" Type="float" Nullable="false" />
+          <Property Name="CodPresentacion" Type="int" Nullable="false" />
+          <Property Name="CodMarca" Type="int" Nullable="false" />
+          <Property Name="SubFamilia" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Minima" Type="float" Nullable="false" />
+          <Property Name="PuntoMedio" Type="float" Nullable="false" />
+          <Property Name="Maxima" Type="float" Nullable="false" />
+          <Property Name="Existencia" Type="float" Nullable="false" />
+          <Property Name="SubUbicacion" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Observaciones" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="MonedaCosto" Type="int" Nullable="false" />
+          <Property Name="PrecioBase" Type="float" Nullable="false" />
+          <Property Name="Fletes" Type="float" Nullable="false" />
+          <Property Name="OtrosCargos" Type="float" Nullable="false" />
+          <Property Name="Costo" Type="float" Nullable="false" />
+          <Property Name="MonedaVenta" Type="int" Nullable="false" />
+          <Property Name="IVenta" Type="float" Nullable="false" />
+          <Property Name="Precio_A" Type="float" Nullable="false" />
+          <Property Name="Precio_B" Type="float" Nullable="false" />
+          <Property Name="Precio_C" Type="float" Nullable="false" />
+          <Property Name="Precio_D" Type="float" Nullable="false" />
+          <Property Name="Precio_Promo" Type="float" Nullable="false" />
+          <Property Name="Promo_Activa" Type="bit" Nullable="false" />
+          <Property Name="Promo_Inicio" Type="smalldatetime" Nullable="false" />
+          <Property Name="Promo_Finaliza" Type="smalldatetime" Nullable="false" />
+          <Property Name="Max_Comision" Type="float" Nullable="false" />
+          <Property Name="Max_Descuento" Type="float" Nullable="false" />
+          <Property Name="Imagen" Type="image" />
+          <Property Name="FechaIngreso" Type="datetime" Nullable="false" />
+          <Property Name="Servicio" Type="bit" Nullable="false" />
+          <Property Name="Inhabilitado" Type="bit" Nullable="false" />
+          <Property Name="Proveedor" Type="int" Nullable="false" />
+          <Property Name="Precio_Sugerido" Type="float" Nullable="false" />
+          <Property Name="SugeridoIV" Type="float" Nullable="false" />
+          <Property Name="PreguntaPrecio" Type="bit" Nullable="false" />
+          <Property Name="Lote" Type="bit" Nullable="false" />
+          <Property Name="Consignacion" Type="bit" Nullable="false" />
+          <Property Name="Id_Bodega" Type="int" Nullable="false" />
+          <Property Name="ExistenciaBodega" Type="float" Nullable="false" />
+          <Property Name="MAX_Inventario" Type="float" Nullable="false" />
+          <Property Name="MAX_Bodega" Type="float" Nullable="false" />
+          <Property Name="CantidadDescarga" Type="float" />
+          <Property Name="CodigoDescarga" Type="varchar" MaxLength="255" />
+          <Property Name="DescargaOtro" Type="bit" />
+          <Property Name="Cod_PresentOtro" Type="int" Nullable="false" />
+          <Property Name="CantidadPresentOtro" Type="float" Nullable="false" />
+          <Property Name="ExistenciaForzada" Type="float" />
+          <Property Name="bloqueado" Type="bit" />
+          <Property Name="pantalla" Type="bit" />
+          <Property Name="clinica" Type="bit" />
+          <Property Name="mascotas" Type="bit" />
+          <Property Name="receta" Type="bit" />
+          <Property Name="peces" Type="bit" />
+          <Property Name="taller" Type="bit" />
+          <Property Name="barras2" Type="varchar" MaxLength="255" />
+          <Property Name="barras3" Type="varchar" MaxLength="255" />
+          <Property Name="Apartado" Type="float" />
+          <Property Name="promo3x1" Type="bit" />
+          <Property Name="orden" Type="bit" />
+          <Property Name="bonificado" Type="bit" />
+          <Property Name="encargado" Type="nvarchar" MaxLength="50" />
+          <Property Name="serie" Type="bigint" Nullable="false" />
+          <Property Name="armamento" Type="bit" />
+          <Property Name="tienda" Type="bit" />
+          <Property Name="prestamo" Type="float" />
+          <Property Name="maquinaria" Type="bit" />
+          <Property Name="productos_organicos" Type="bit" />
+          <Property Name="rifa" Type="bigint" />
+          <Property Name="PromoCON" Type="bit" Nullable="false" />
+          <Property Name="PromoCRE" Type="bit" Nullable="false" />
+          <Property Name="CostoReal" Type="float" />
+          <Property Name="ValidaExistencia" Type="bit" Nullable="false" />
+          <Property Name="Actualizado" Type="bit" Nullable="false" />
+          <Property Name="FechaActualizacion" Type="date" />
+          <Property Name="Id_Impuesto" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ActivarBodega2" Type="bit" Nullable="false" />
+          <Property Name="ExistenciaBodega2" Type="float" Nullable="false" />
+          <Property Name="EnToma" Type="bit" Nullable="false" />
+          <Property Name="UsaGalon" Type="bit" Nullable="false" />
+          <Property Name="ApicarDescuentoTarjeta" Type="bit" Nullable="false" />
+          <Property Name="SoloContado" Type="bit" Nullable="false" />
+          <Property Name="SoloConExistencia" Type="bit" Nullable="false" />
+          <Property Name="MAG" Type="bit" Nullable="false" />
+          <Property Name="SinDecimal" Type="bit" Nullable="false" />
+          <Property Name="CODCABYS" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="CodigoPrestamo" Type="bigint" Nullable="false" />
+          <Property Name="Muestra" Type="bit" Nullable="false" />
+          <Property Name="Web" Type="bit" Nullable="false" />
+          <Property Name="SoloUsoInterno" Type="bit" Nullable="false" />
+        </EntityType>
         <Association Name="FK_IdEncabezado">
           <End Role="Albaran" Type="Self.Albaran" Multiplicity="1" />
           <End Role="Albaran_Detalle" Type="Self.Albaran_Detalle" Multiplicity="*" />
@@ -67,6 +165,7 @@
           <EntitySet Name="Albaran" EntityType="Self.Albaran" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Albaran_Detalle" EntityType="Self.Albaran_Detalle" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Bitacora_Albaran" EntityType="Self.Bitacora_Albaran" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Inventario" EntityType="Self.Inventario" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_IdEncabezado" Association="Self.FK_IdEncabezado">
             <End Role="Albaran" EntitySet="Albaran" />
             <End Role="Albaran_Detalle" EntitySet="Albaran_Detalle" />
@@ -144,7 +243,106 @@
             <End Role="Albaran" EntitySet="Albarans" />
             <End Role="Albaran_Detalle" EntitySet="Albaran_Detalle" />
           </AssociationSet>
+          <EntitySet Name="Inventarios" EntityType="SINCRONIZADORModel.Inventario" />
         </EntityContainer>
+        <EntityType Name="Inventario">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="Int64" Nullable="false" />
+          <Property Name="Cod_Articulo" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Barras" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="PresentaCant" Type="Double" Nullable="false" />
+          <Property Name="CodPresentacion" Type="Int32" Nullable="false" />
+          <Property Name="CodMarca" Type="Int32" Nullable="false" />
+          <Property Name="SubFamilia" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Minima" Type="Double" Nullable="false" />
+          <Property Name="PuntoMedio" Type="Double" Nullable="false" />
+          <Property Name="Maxima" Type="Double" Nullable="false" />
+          <Property Name="Existencia" Type="Double" Nullable="false" />
+          <Property Name="SubUbicacion" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Observaciones" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="MonedaCosto" Type="Int32" Nullable="false" />
+          <Property Name="PrecioBase" Type="Double" Nullable="false" />
+          <Property Name="Fletes" Type="Double" Nullable="false" />
+          <Property Name="OtrosCargos" Type="Double" Nullable="false" />
+          <Property Name="Costo" Type="Double" Nullable="false" />
+          <Property Name="MonedaVenta" Type="Int32" Nullable="false" />
+          <Property Name="IVenta" Type="Double" Nullable="false" />
+          <Property Name="Precio_A" Type="Double" Nullable="false" />
+          <Property Name="Precio_B" Type="Double" Nullable="false" />
+          <Property Name="Precio_C" Type="Double" Nullable="false" />
+          <Property Name="Precio_D" Type="Double" Nullable="false" />
+          <Property Name="Precio_Promo" Type="Double" Nullable="false" />
+          <Property Name="Promo_Activa" Type="Boolean" Nullable="false" />
+          <Property Name="Promo_Inicio" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Promo_Finaliza" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Max_Comision" Type="Double" Nullable="false" />
+          <Property Name="Max_Descuento" Type="Double" Nullable="false" />
+          <Property Name="Imagen" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="FechaIngreso" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Servicio" Type="Boolean" Nullable="false" />
+          <Property Name="Inhabilitado" Type="Boolean" Nullable="false" />
+          <Property Name="Proveedor" Type="Int32" Nullable="false" />
+          <Property Name="Precio_Sugerido" Type="Double" Nullable="false" />
+          <Property Name="SugeridoIV" Type="Double" Nullable="false" />
+          <Property Name="PreguntaPrecio" Type="Boolean" Nullable="false" />
+          <Property Name="Lote" Type="Boolean" Nullable="false" />
+          <Property Name="Consignacion" Type="Boolean" Nullable="false" />
+          <Property Name="Id_Bodega" Type="Int32" Nullable="false" />
+          <Property Name="ExistenciaBodega" Type="Double" Nullable="false" />
+          <Property Name="MAX_Inventario" Type="Double" Nullable="false" />
+          <Property Name="MAX_Bodega" Type="Double" Nullable="false" />
+          <Property Name="CantidadDescarga" Type="Double" />
+          <Property Name="CodigoDescarga" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="DescargaOtro" Type="Boolean" />
+          <Property Name="Cod_PresentOtro" Type="Int32" Nullable="false" />
+          <Property Name="CantidadPresentOtro" Type="Double" Nullable="false" />
+          <Property Name="ExistenciaForzada" Type="Double" />
+          <Property Name="bloqueado" Type="Boolean" />
+          <Property Name="pantalla" Type="Boolean" />
+          <Property Name="clinica" Type="Boolean" />
+          <Property Name="mascotas" Type="Boolean" />
+          <Property Name="receta" Type="Boolean" />
+          <Property Name="peces" Type="Boolean" />
+          <Property Name="taller" Type="Boolean" />
+          <Property Name="barras2" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="barras3" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Apartado" Type="Double" />
+          <Property Name="promo3x1" Type="Boolean" />
+          <Property Name="orden" Type="Boolean" />
+          <Property Name="bonificado" Type="Boolean" />
+          <Property Name="encargado" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="serie" Type="Int64" Nullable="false" />
+          <Property Name="armamento" Type="Boolean" />
+          <Property Name="tienda" Type="Boolean" />
+          <Property Name="prestamo" Type="Double" />
+          <Property Name="maquinaria" Type="Boolean" />
+          <Property Name="productos_organicos" Type="Boolean" />
+          <Property Name="rifa" Type="Int64" />
+          <Property Name="PromoCON" Type="Boolean" Nullable="false" />
+          <Property Name="PromoCRE" Type="Boolean" Nullable="false" />
+          <Property Name="CostoReal" Type="Double" />
+          <Property Name="ValidaExistencia" Type="Boolean" Nullable="false" />
+          <Property Name="Actualizado" Type="Boolean" Nullable="false" />
+          <Property Name="FechaActualizacion" Type="DateTime" Precision="0" />
+          <Property Name="Id_Impuesto" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="ActivarBodega2" Type="Boolean" Nullable="false" />
+          <Property Name="ExistenciaBodega2" Type="Double" Nullable="false" />
+          <Property Name="EnToma" Type="Boolean" Nullable="false" />
+          <Property Name="UsaGalon" Type="Boolean" Nullable="false" />
+          <Property Name="ApicarDescuentoTarjeta" Type="Boolean" Nullable="false" />
+          <Property Name="SoloContado" Type="Boolean" Nullable="false" />
+          <Property Name="SoloConExistencia" Type="Boolean" Nullable="false" />
+          <Property Name="MAG" Type="Boolean" Nullable="false" />
+          <Property Name="SinDecimal" Type="Boolean" Nullable="false" />
+          <Property Name="CODCABYS" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="CodigoPrestamo" Type="Int64" Nullable="false" />
+          <Property Name="Muestra" Type="Boolean" Nullable="false" />
+          <Property Name="Web" Type="Boolean" Nullable="false" />
+          <Property Name="SoloUsoInterno" Type="Boolean" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -197,6 +395,105 @@
                 <ScalarProperty Name="hora" ColumnName="hora" />
                 <ScalarProperty Name="usuario" ColumnName="usuario" />
                 <ScalarProperty Name="CantidadRegistrosProcesados" ColumnName="CantidadRegistrosProcesados" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Inventarios">
+            <EntityTypeMapping TypeName="SINCRONIZADORModel.Inventario">
+              <MappingFragment StoreEntitySet="Inventario">
+                <ScalarProperty Name="SoloUsoInterno" ColumnName="SoloUsoInterno" />
+                <ScalarProperty Name="Web" ColumnName="Web" />
+                <ScalarProperty Name="Muestra" ColumnName="Muestra" />
+                <ScalarProperty Name="CodigoPrestamo" ColumnName="CodigoPrestamo" />
+                <ScalarProperty Name="CODCABYS" ColumnName="CODCABYS" />
+                <ScalarProperty Name="SinDecimal" ColumnName="SinDecimal" />
+                <ScalarProperty Name="MAG" ColumnName="MAG" />
+                <ScalarProperty Name="SoloConExistencia" ColumnName="SoloConExistencia" />
+                <ScalarProperty Name="SoloContado" ColumnName="SoloContado" />
+                <ScalarProperty Name="ApicarDescuentoTarjeta" ColumnName="ApicarDescuentoTarjeta" />
+                <ScalarProperty Name="UsaGalon" ColumnName="UsaGalon" />
+                <ScalarProperty Name="EnToma" ColumnName="EnToma" />
+                <ScalarProperty Name="ExistenciaBodega2" ColumnName="ExistenciaBodega2" />
+                <ScalarProperty Name="ActivarBodega2" ColumnName="ActivarBodega2" />
+                <ScalarProperty Name="Id_Impuesto" ColumnName="Id_Impuesto" />
+                <ScalarProperty Name="FechaActualizacion" ColumnName="FechaActualizacion" />
+                <ScalarProperty Name="Actualizado" ColumnName="Actualizado" />
+                <ScalarProperty Name="ValidaExistencia" ColumnName="ValidaExistencia" />
+                <ScalarProperty Name="CostoReal" ColumnName="CostoReal" />
+                <ScalarProperty Name="PromoCRE" ColumnName="PromoCRE" />
+                <ScalarProperty Name="PromoCON" ColumnName="PromoCON" />
+                <ScalarProperty Name="rifa" ColumnName="rifa" />
+                <ScalarProperty Name="productos_organicos" ColumnName="productos_organicos" />
+                <ScalarProperty Name="maquinaria" ColumnName="maquinaria" />
+                <ScalarProperty Name="prestamo" ColumnName="prestamo" />
+                <ScalarProperty Name="tienda" ColumnName="tienda" />
+                <ScalarProperty Name="armamento" ColumnName="armamento" />
+                <ScalarProperty Name="serie" ColumnName="serie" />
+                <ScalarProperty Name="encargado" ColumnName="encargado" />
+                <ScalarProperty Name="bonificado" ColumnName="bonificado" />
+                <ScalarProperty Name="orden" ColumnName="orden" />
+                <ScalarProperty Name="promo3x1" ColumnName="promo3x1" />
+                <ScalarProperty Name="Apartado" ColumnName="Apartado" />
+                <ScalarProperty Name="barras3" ColumnName="barras3" />
+                <ScalarProperty Name="barras2" ColumnName="barras2" />
+                <ScalarProperty Name="taller" ColumnName="taller" />
+                <ScalarProperty Name="peces" ColumnName="peces" />
+                <ScalarProperty Name="receta" ColumnName="receta" />
+                <ScalarProperty Name="mascotas" ColumnName="mascotas" />
+                <ScalarProperty Name="clinica" ColumnName="clinica" />
+                <ScalarProperty Name="pantalla" ColumnName="pantalla" />
+                <ScalarProperty Name="bloqueado" ColumnName="bloqueado" />
+                <ScalarProperty Name="ExistenciaForzada" ColumnName="ExistenciaForzada" />
+                <ScalarProperty Name="CantidadPresentOtro" ColumnName="CantidadPresentOtro" />
+                <ScalarProperty Name="Cod_PresentOtro" ColumnName="Cod_PresentOtro" />
+                <ScalarProperty Name="DescargaOtro" ColumnName="DescargaOtro" />
+                <ScalarProperty Name="CodigoDescarga" ColumnName="CodigoDescarga" />
+                <ScalarProperty Name="CantidadDescarga" ColumnName="CantidadDescarga" />
+                <ScalarProperty Name="MAX_Bodega" ColumnName="MAX_Bodega" />
+                <ScalarProperty Name="MAX_Inventario" ColumnName="MAX_Inventario" />
+                <ScalarProperty Name="ExistenciaBodega" ColumnName="ExistenciaBodega" />
+                <ScalarProperty Name="Id_Bodega" ColumnName="Id_Bodega" />
+                <ScalarProperty Name="Consignacion" ColumnName="Consignacion" />
+                <ScalarProperty Name="Lote" ColumnName="Lote" />
+                <ScalarProperty Name="PreguntaPrecio" ColumnName="PreguntaPrecio" />
+                <ScalarProperty Name="SugeridoIV" ColumnName="SugeridoIV" />
+                <ScalarProperty Name="Precio_Sugerido" ColumnName="Precio_Sugerido" />
+                <ScalarProperty Name="Proveedor" ColumnName="Proveedor" />
+                <ScalarProperty Name="Inhabilitado" ColumnName="Inhabilitado" />
+                <ScalarProperty Name="Servicio" ColumnName="Servicio" />
+                <ScalarProperty Name="FechaIngreso" ColumnName="FechaIngreso" />
+                <ScalarProperty Name="Imagen" ColumnName="Imagen" />
+                <ScalarProperty Name="Max_Descuento" ColumnName="Max_Descuento" />
+                <ScalarProperty Name="Max_Comision" ColumnName="Max_Comision" />
+                <ScalarProperty Name="Promo_Finaliza" ColumnName="Promo_Finaliza" />
+                <ScalarProperty Name="Promo_Inicio" ColumnName="Promo_Inicio" />
+                <ScalarProperty Name="Promo_Activa" ColumnName="Promo_Activa" />
+                <ScalarProperty Name="Precio_Promo" ColumnName="Precio_Promo" />
+                <ScalarProperty Name="Precio_D" ColumnName="Precio_D" />
+                <ScalarProperty Name="Precio_C" ColumnName="Precio_C" />
+                <ScalarProperty Name="Precio_B" ColumnName="Precio_B" />
+                <ScalarProperty Name="Precio_A" ColumnName="Precio_A" />
+                <ScalarProperty Name="IVenta" ColumnName="IVenta" />
+                <ScalarProperty Name="MonedaVenta" ColumnName="MonedaVenta" />
+                <ScalarProperty Name="Costo" ColumnName="Costo" />
+                <ScalarProperty Name="OtrosCargos" ColumnName="OtrosCargos" />
+                <ScalarProperty Name="Fletes" ColumnName="Fletes" />
+                <ScalarProperty Name="PrecioBase" ColumnName="PrecioBase" />
+                <ScalarProperty Name="MonedaCosto" ColumnName="MonedaCosto" />
+                <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+                <ScalarProperty Name="SubUbicacion" ColumnName="SubUbicacion" />
+                <ScalarProperty Name="Existencia" ColumnName="Existencia" />
+                <ScalarProperty Name="Maxima" ColumnName="Maxima" />
+                <ScalarProperty Name="PuntoMedio" ColumnName="PuntoMedio" />
+                <ScalarProperty Name="Minima" ColumnName="Minima" />
+                <ScalarProperty Name="SubFamilia" ColumnName="SubFamilia" />
+                <ScalarProperty Name="CodMarca" ColumnName="CodMarca" />
+                <ScalarProperty Name="CodPresentacion" ColumnName="CodPresentacion" />
+                <ScalarProperty Name="PresentaCant" ColumnName="PresentaCant" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Barras" ColumnName="Barras" />
+                <ScalarProperty Name="Cod_Articulo" ColumnName="Cod_Articulo" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

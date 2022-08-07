@@ -9,6 +9,7 @@
         <EntityTypeShape EntityType="SINCRONIZADORModel.Albaran_Detalle" Width="1.5" PointX="3" PointY="1.5" IsExpanded="true" />
         <EntityTypeShape EntityType="SINCRONIZADORModel.Bitacora_Albaran" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
         <AssociationConnector Association="SINCRONIZADORModel.FK_IdEncabezado" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="SINCRONIZADORModel.Inventario" Width="1.5" PointX="5.375" PointY="3.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -28,5 +28,6 @@ namespace SincronizadorQvetSuvesaPOS.Datos
         public virtual DbSet<Albaran> Albarans { get; set; }
         public virtual DbSet<Albaran_Detalle> Albaran_Detalle { get; set; }
         public virtual DbSet<Bitacora_Albaran> Bitacora_Albaran { get; set; }
+        public virtual DbSet<Inventario> Inventarios { get; set; }
     }
 }

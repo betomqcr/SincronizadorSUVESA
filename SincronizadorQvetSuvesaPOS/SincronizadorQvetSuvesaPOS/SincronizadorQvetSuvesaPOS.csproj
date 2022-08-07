@@ -108,18 +108,22 @@
     <Compile Include="Modelos\Serialize.cs" />
     <Compile Include="Modelos\Tarifa.cs" />
     <Compile Include="Modelos\Token.cs" />
+    <Compile Include="Models\Articulo.cs" />
+    <Compile Include="Models\Converter.cs" />
+    <Compile Include="Models\Familia.cs" />
+    <Compile Include="Models\Iva.cs" />
+    <Compile Include="Models\ListaTarifa.cs" />
+    <Compile Include="Models\Lote.cs" />
+    <Compile Include="Models\Marca.cs" />
+    <Compile Include="Models\Seccion.cs" />
+    <Compile Include="Models\Serialize.cs" />
+    <Compile Include="Models\Subfamilia.cs" />
     <Compile Include="Negocio\Proccess.cs" />
     <Compile Include="ProjectInstaller.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ProjectInstaller.Designer.cs">
       <DependentUpon>ProjectInstaller.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Service1.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Service1.Designer.cs">
-      <DependentUpon>Service1.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
