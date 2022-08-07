@@ -12,7 +12,7 @@ namespace SincronizadorQvetSuvesaPOS.Models
     public class Articulo
     {
         [JsonProperty("id_articulo")]
-        public long IdArticulo { get; set; }
+        public long? IdArticulo { get; set; }
 
 
 
@@ -42,7 +42,7 @@ namespace SincronizadorQvetSuvesaPOS.Models
 
 
         [JsonProperty("factor_conversion")]
-        public long FactorConversion { get; set; }
+        public long? FactorConversion { get; set; }
 
 
 

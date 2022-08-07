@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using SincronizadorQvetSuvesaPOS.Datos;
 using SincronizadorQvetSuvesaPOS.Modelos;
+using SincronizadorQvetSuvesaPOS.Models;
+
 
 namespace SincronizadorQvetSuvesaPOS.Negocio
 {
@@ -12,7 +14,10 @@ namespace SincronizadorQvetSuvesaPOS.Negocio
     {
         Managers manager = new Managers();
         Conections.Conections con = new Conections.Conections();
-        Marca marca = new Marca();// modelo
+        Modelos.Marca marca = new Modelos.Marca();// modelo
+        Articulo articulo = new Articulo();
+        
+
         
         public Proccess() { }
 
@@ -45,6 +50,24 @@ namespace SincronizadorQvetSuvesaPOS.Negocio
 
                 return 0;
                 
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public int ActualizarArticulos()
+        {
+            try
+            {
+                List<Inventario> lista = manager.PendientesDeActualizar();
+                List<Articulo> articulos = manager.ConvertirDeInventarioaArticulo(lista); 
+
+
+
+                return 0;
+
             }
             catch (Exception ex)
             {

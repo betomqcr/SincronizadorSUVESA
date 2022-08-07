@@ -230,5 +230,17 @@ namespace SincronizadorQvetSuvesaPOS.Conections
                 throw ex;
             }
         }
+
+        public bool CrearoActualizarArticulos()
+        {
+            try
+            {
+                return false;
+            }
+            catch(Exception ex)
+            {
+                throw ex
+            }
+        }
     }
 }

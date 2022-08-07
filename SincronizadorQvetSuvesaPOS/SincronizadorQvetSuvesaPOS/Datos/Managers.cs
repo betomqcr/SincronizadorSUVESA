@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 using SincronizadorQvetSuvesaPOS.Datos;
 using SincronizadorQvetSuvesaPOS.Helpers;
 using SincronizadorQvetSuvesaPOS.Modelos;
+using SincronizadorQvetSuvesaPOS.Models;
 
 namespace SincronizadorQvetSuvesaPOS.Datos
 {
-    
-    public  class Managers
+
+    public class Managers
     {
         public SINCRONIZADOREntities entities;
 
@@ -29,17 +30,17 @@ namespace SincronizadorQvetSuvesaPOS.Datos
                 {
                     Albaran a = new Albaran();
                     a.NombreCliente = dato.Cliente.Nombre;
-                    a.NombreMascota = (dato.Mascota==null)?" ": dato.Mascota.Nombre;
+                    a.NombreMascota = (dato.Mascota == null) ? " " : dato.Mascota.Nombre;
                     a.Fecha = DateTime.Parse(dato.Fecha.ToString());
                     a.Id_Qvet_Migrado = dato.IdAlbaran;
                     a.Cedula = dato.Cliente.Documento;
-                    a.Id_Mascota_Qvet = (dato.Mascota==null)?0 : int.Parse(dato.Mascota.IdMascota.ToString());
+                    a.Id_Mascota_Qvet = (dato.Mascota == null) ? 0 : int.Parse(dato.Mascota.IdMascota.ToString());
                     a.Email = dato.Cliente.Email;
                     a.Direccion = dato.Cliente.Domicilio;
-                    a.NHC_Mascota = (dato.Mascota== null)?" ": dato.Mascota.Nhc;
+                    a.NHC_Mascota = (dato.Mascota == null) ? " " : dato.Mascota.Nhc;
                     a.Responsable = dato.ResponsableVenta;
                     a.Tipo_Cliente = dato.Cliente.TipoCliente;
-                    a.CHIP_Mascota = (dato.Mascota==null)?" ": dato.Mascota.Chip;
+                    a.CHIP_Mascota = (dato.Mascota == null) ? " " : dato.Mascota.Chip;
                     a.facturado = false;
                     entities.Albarans.Add(a);
                     entities.SaveChanges();
@@ -62,7 +63,7 @@ namespace SincronizadorQvetSuvesaPOS.Datos
                         entities.SaveChanges();
                         //listat.Add(d);
                         resb++;
-                        
+
                     }
                     //a.Albaran_Detalle=listat;
 
@@ -76,12 +77,12 @@ namespace SincronizadorQvetSuvesaPOS.Datos
                 EscrituraArchivo.escribirArchivo(tipoEscritura.CantidadAlbaranes, resa.ToString());
                 EscrituraArchivo.escribirArchivo(tipoEscritura.CantidadLineasAlbaranes, resb.ToString());
 
-                if (resa==0 && resb==0)
+                if (resa == 0 && resb == 0)
                     return 0;
                 else
                     return resa;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw ex;
             }
@@ -121,11 +122,11 @@ namespace SincronizadorQvetSuvesaPOS.Datos
                             select c;
                 List<Albaran> lista = query.ToList();
 
-                foreach(Albaran temp in lista)
+                foreach (Albaran temp in lista)
                 {
                     res = temp.Id_Qvet_Migrado;
                 }
-                if(res== registro)
+                if (res == registro)
                 {
                     return true;
                 }
@@ -149,21 +150,92 @@ namespace SincronizadorQvetSuvesaPOS.Datos
                          select c.Id_Qvet_Migrado;
 
                 List<long> numbers = id.ToList();
-                if(numbers.Count > 0)
+                if (numbers.Count > 0)
                     return numbers.Max();
 
                 return 0;
-               
+
             }
             catch (Exception ex)
             {
                 throw ex;
             }
         }
-        // un metod para validar que no este insertado
 
+        public List<Inventario> PendientesDeActualizar()
+        {
+            try
+            {
+                List<Inventario> lista;
+                var query = from c in entities.Inventarios
+                            where c.FechaIngreso.Equals(DateTime.Now.Date) || c.FechaActualizacion.Equals(DateTime.Now.Date)
+                            select c;
+                lista = query.ToList();
 
-        // metodo para insertar lineas llamar en albaran
+                return lista;
+            
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public List<Articulo> ConvertirDeInventarioaArticulo(List<Inventario> lista)
+        {
+            try
+            {
+                List<Articulo> resultado = new List<Articulo>();
+
+                foreach(Inventario temp in lista)
+                {
+                    Articulo art = new Articulo()
+                    {
+                        IdArticulo = long.Parse(temp.Cod_Articulo),
+                        Descripcion = temp.Descripcion,
+                        Descripcion2 = temp.Descripcion,
+                        CodigoBarras = temp.Barras,
+                        FactorConversion = 1,
+                        Seccion = null,
+                        Familia = null,
+                        Subfamilia = null,
+                        Tipo = "Normal",
+                        TipoEscandallo = 0,
+                        ControlStock = 0,
+                        FechaAlta = temp.FechaIngreso.ToString(),
+                        Activo=true,
+                        Precio=long.Parse(temp.Precio_A.ToString()),
+                                
+                    };
+                    Models.Iva iva = new Models.Iva()
+                    {
+                        Id=22,
+                        Descripcion="13 %",
+                        Valor=13
+                    };
+
+                    Models.ListaTarifa tarifas = new ListaTarifa()
+                    {
+                        IdTarifa=46,
+                        Nombre= "Tarifa 1",
+                        PrecioUnitario= long.Parse(temp.Precio_A.ToString())
+                    };
+                    List<ListaTarifa> listaTarifas = new List<ListaTarifa>();
+                    art.Iva = iva;
+                    listaTarifas.Add(tarifas);
+                    art.ListaTarifas = listaTarifas;
+                    
+
+                    resultado.Add(art);
+                }
+                return resultado;
+
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+        }
 
 
 

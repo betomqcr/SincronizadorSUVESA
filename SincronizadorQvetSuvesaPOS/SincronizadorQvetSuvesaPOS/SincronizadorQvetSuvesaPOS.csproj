@@ -87,6 +87,9 @@
     <Compile Include="Datos\Bitacora_Albaran.cs">
       <DependentUpon>BaseDatosModelo.tt</DependentUpon>
     </Compile>
+    <Compile Include="Datos\Inventario.cs">
+      <DependentUpon>BaseDatosModelo.tt</DependentUpon>
+    </Compile>
     <Compile Include="Datos\Managers.cs" />
     <Compile Include="Helpers\EscrituraArchivo.cs" />
     <Compile Include="Modelos\GtokenApi.cs" />
