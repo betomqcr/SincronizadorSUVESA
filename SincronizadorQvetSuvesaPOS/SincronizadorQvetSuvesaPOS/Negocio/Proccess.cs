@@ -57,16 +57,30 @@ namespace SincronizadorQvetSuvesaPOS.Negocio
             }
         }
 
-        public int ActualizarArticulos()
+        public List<ResultadoAPI> ActualizarArticulos()
         {
             try
             {
                 List<Inventario> lista = manager.PendientesDeActualizar();
-                List<Articulo> articulos = manager.ConvertirDeInventarioaArticulo(lista); 
+                List<Articulo> articulos = manager.ConvertirDeInventarioaArticulo(lista);
+                bool bandera = false;
+                List<ResultadoAPI> resultado = new List<ResultadoAPI>();
+                string respuesta;
 
+                foreach (Articulo temp in articulos)
+                {
+             
+                   respuesta= con.CrearoActualizarArticulos(temp);
+                    ResultadoAPI dato = new ResultadoAPI()
+                    {
+                        codigo= long.Parse(temp.IdArticulo.ToString()),
+                        res= respuesta
 
+                    };
+                    resultado.Add(dato);
+                }
 
-                return 0;
+                return resultado;
 
             }
             catch (Exception ex)

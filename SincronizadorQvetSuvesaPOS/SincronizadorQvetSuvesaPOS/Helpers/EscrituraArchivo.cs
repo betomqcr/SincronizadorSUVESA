@@ -13,7 +13,8 @@ namespace SincronizadorQvetSuvesaPOS.Helpers
         CantidadAlbaranes,
         CantidadLineasAlbaranes,
         HoraFinal,
-        TiempoEmpleado
+        TiempoEmpleado,
+        TipoProcedimiento
     }
 
 
@@ -63,6 +64,10 @@ namespace SincronizadorQvetSuvesaPOS.Helpers
 
                             case tipoEscritura.TiempoEmpleado:
                                 value = $"Tiempo Empleado: {value}";
+                                break;
+
+                            case tipoEscritura.TipoProcedimiento:
+                                value = $"Tipo de procedimiento: {value}";
                                 break;
 
                             default:

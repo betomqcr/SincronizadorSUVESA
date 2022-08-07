@@ -8,6 +8,7 @@ using System.ServiceProcess;
 using System.Text;
 using SincronizadorQvetSuvesaPOS.Helpers;
 using SincronizadorQvetSuvesaPOS.Modelos;
+using SincronizadorQvetSuvesaPOS.Models;
 
 namespace SincronizadorQvetSuvesaPOS
 {
@@ -16,7 +17,7 @@ namespace SincronizadorQvetSuvesaPOS
 
         // Variables globales
         bool bandera= false;
-        string[] test;
+        string[] Argumento;
         Conections.Conections con = new Conections.Conections();
         Negocio.Proccess pro = new Negocio.Proccess();
 
@@ -29,7 +30,7 @@ namespace SincronizadorQvetSuvesaPOS
         {
             // TODO: agregar código aquí para iniciar el servicio.
             st_Inicio.Start();
-            test = args;
+            Argumento = args;
         }
 
         protected override void OnStop()
@@ -44,48 +45,90 @@ namespace SincronizadorQvetSuvesaPOS
 
             try
             {
-                EventLog.WriteEntry("Hola", EventLogEntryType.Error);
 
-                if(test != null)
+                if (Argumento[0].Equals("1"))
                 {
-                    foreach (string arg in test)
-                    {
-                        EventLog.WriteEntry(arg, EventLogEntryType.Information);
-                    }
+
+
+
+                    // Iniciar el tiempo aqui
+                    Stopwatch stopWatch = new Stopwatch();
+                    stopWatch.Start();
+
+                    bandera = true;
+
+                    // Establece el nombre del archivo de texto
+                    EscrituraArchivo.nameFile = $"SincronizadorSuvesa{DateTime.Now.ToString("yyyyMMddTHHmmss")}";
+
+                    // Escribe Hora Inicial
+                    EscrituraArchivo.escribirArchivo(tipoEscritura.HoraInicio, DateTime.Now.ToString());
+                    EscrituraArchivo.escribirArchivo(tipoEscritura.TipoProcedimiento, "Ventas");
+
+                    GLinkApi.linkApi = con.GetUrlApiQvet();
+                    GtokenApi.tokenApi = con.GetToken();
+
+                    int res = pro.insertarDatos();
+
+                    // Escribe Hora Final
+                    EscrituraArchivo.escribirArchivo(tipoEscritura.HoraFinal, DateTime.Now.ToString());
+
+                    // Escribe Tiempo Empleado
+                    stopWatch.Stop();
+                    TimeSpan ts = stopWatch.Elapsed;
+                    string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:00}",
+                                                        ts.Hours, ts.Minutes, ts.Seconds,
+                                                        ts.Milliseconds / 10);
+                    EscrituraArchivo.escribirArchivo(tipoEscritura.TiempoEmpleado, elapsedTime);
+
+                    bandera = false;
+
+                    OnStop();
                 }
+                else
+                {
 
+                    // Iniciar el tiempo aqui
+                    Stopwatch stopWatch = new Stopwatch();
+                    stopWatch.Start();
 
-                // Iniciar el tiempo aqui
-                Stopwatch stopWatch = new Stopwatch();
-                stopWatch.Start();
+                    bandera = true;
 
-                bandera = true;
+                    // Establece el nombre del archivo de texto
+                    EscrituraArchivo.nameFile = $"SincronizadorSuvesa{DateTime.Now.ToString("yyyyMMddTHHmmss")}";
 
-                // Establece el nombre del archivo de texto
-                EscrituraArchivo.nameFile = $"SincronizadorSuvesa{DateTime.Now.ToString("yyyyMMddTHHmmss")}";
+                    
 
-                // Escribe Hora Inicial
-                EscrituraArchivo.escribirArchivo(tipoEscritura.HoraInicio, DateTime.Now.ToString());
+                    // Escribe Hora Inicial
+                    EscrituraArchivo.escribirArchivo(tipoEscritura.HoraInicio, DateTime.Now.ToString());
+                    EscrituraArchivo.escribirArchivo(tipoEscritura.TipoProcedimiento, "Articulos");
 
-                GLinkApi.linkApi = con.GetUrlApiQvet();
-                GtokenApi.tokenApi = con.GetToken();
+                    GLinkApi.linkApi = con.GetUrlApiQvet();
+                    GtokenApi.tokenApi = con.GetToken();
 
-                int res = pro.insertarDatos();
+                    List<ResultadoAPI> res = pro.ActualizarArticulos();
 
-                // Escribe Hora Final
-                EscrituraArchivo.escribirArchivo(tipoEscritura.HoraFinal, DateTime.Now.ToString());
+                    foreach(ResultadoAPI temp in res)
+                    {
+                        //escribir en el archivo
 
-                // Escribe Tiempo Empleado
-                stopWatch.Stop();
-                TimeSpan ts = stopWatch.Elapsed;
-                string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:00}",
-                                                    ts.Hours, ts.Minutes, ts.Seconds,
-                                                    ts.Milliseconds / 10);
-                EscrituraArchivo.escribirArchivo(tipoEscritura.TiempoEmpleado, elapsedTime);
+                    }
 
-                bandera = false;
+                    // Escribe Hora Final
+                    EscrituraArchivo.escribirArchivo(tipoEscritura.HoraFinal, DateTime.Now.ToString());
 
-                OnStop();
+                    // Escribe Tiempo Empleado
+                    stopWatch.Stop();
+                    TimeSpan ts = stopWatch.Elapsed;
+                    string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:00}",
+                                                        ts.Hours, ts.Minutes, ts.Seconds,
+                                                        ts.Milliseconds / 10);
+                    EscrituraArchivo.escribirArchivo(tipoEscritura.TiempoEmpleado, elapsedTime);
+
+                    bandera = false;
+
+                    OnStop();
+
+                }
             }
             catch(Exception ex)
             {
