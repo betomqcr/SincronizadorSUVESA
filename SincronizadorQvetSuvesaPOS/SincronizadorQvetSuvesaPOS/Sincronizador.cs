@@ -18,6 +18,7 @@ namespace SincronizadorQvetSuvesaPOS
         // Variables globales
         bool bandera= false;
         string[] Argumento;
+
         Conections.Conections con = new Conections.Conections();
         Negocio.Proccess pro = new Negocio.Proccess();
 
@@ -45,11 +46,10 @@ namespace SincronizadorQvetSuvesaPOS
 
             try
             {
+                EventLog.WriteEntry(AppDomain.CurrentDomain.BaseDirectory, EventLogEntryType.Error);
 
                 if (Argumento[0].Equals("1"))
                 {
-
-
 
                     // Iniciar el tiempo aqui
                     Stopwatch stopWatch = new Stopwatch();
@@ -62,6 +62,8 @@ namespace SincronizadorQvetSuvesaPOS
 
                     // Escribe Hora Inicial
                     EscrituraArchivo.escribirArchivo(tipoEscritura.HoraInicio, DateTime.Now.ToString());
+
+                    // Escribe el Tipo de Procedimiento
                     EscrituraArchivo.escribirArchivo(tipoEscritura.TipoProcedimiento, "Ventas");
 
                     GLinkApi.linkApi = con.GetUrlApiQvet();
@@ -96,10 +98,10 @@ namespace SincronizadorQvetSuvesaPOS
                     // Establece el nombre del archivo de texto
                     EscrituraArchivo.nameFile = $"SincronizadorSuvesa{DateTime.Now.ToString("yyyyMMddTHHmmss")}";
 
-                    
-
                     // Escribe Hora Inicial
                     EscrituraArchivo.escribirArchivo(tipoEscritura.HoraInicio, DateTime.Now.ToString());
+
+                    // Escribe el Tipo de Procedimiento
                     EscrituraArchivo.escribirArchivo(tipoEscritura.TipoProcedimiento, "Articulos");
 
                     GLinkApi.linkApi = con.GetUrlApiQvet();
@@ -110,7 +112,6 @@ namespace SincronizadorQvetSuvesaPOS
                     foreach(ResultadoAPI temp in res)
                     {
                         //escribir en el archivo
-
                     }
 
                     // Escribe Hora Final

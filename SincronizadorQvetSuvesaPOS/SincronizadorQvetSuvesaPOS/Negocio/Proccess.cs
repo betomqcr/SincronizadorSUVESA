@@ -15,9 +15,6 @@ namespace SincronizadorQvetSuvesaPOS.Negocio
         Managers manager = new Managers();
         Conections.Conections con = new Conections.Conections();
         Modelos.Marca marca = new Modelos.Marca();// modelo
-        Articulo articulo = new Articulo();
-        
-
         
         public Proccess() { }
 
@@ -25,9 +22,6 @@ namespace SincronizadorQvetSuvesaPOS.Negocio
         {
             try
             {
-                //Marca marca1 = new Marca();// modelo
-                //marca1 = con.ObtenerResultadosApiVentasSinPagina();
-
                 long paginas = con.ObtenerPaginasTotales();
                 List<Dato> listaDatos = new List<Dato>();
 
@@ -63,7 +57,6 @@ namespace SincronizadorQvetSuvesaPOS.Negocio
             {
                 List<Inventario> lista = manager.PendientesDeActualizar();
                 List<Articulo> articulos = manager.ConvertirDeInventarioaArticulo(lista);
-                bool bandera = false;
                 List<ResultadoAPI> resultado = new List<ResultadoAPI>();
                 string respuesta;
 
