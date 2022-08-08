@@ -42,8 +42,9 @@ namespace SincronizadorQvetSuvesaPOS.Helpers
                             {
                                 line = streamReader.ReadToEnd();
                             }
+                            fileStream.Close();
                         }
-
+    
                         switch (tipoEscritura)
                         {
                             case tipoEscritura.HoraInicio:

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SincronizadorQvetSuvesaPOS.Datos;
+using SincronizadorQvetSuvesaPOS.Helpers;
 using SincronizadorQvetSuvesaPOS.Modelos;
 using SincronizadorQvetSuvesaPOS.Models;
 
@@ -38,8 +39,7 @@ namespace SincronizadorQvetSuvesaPOS.Negocio
                         }
                     }
                 }
-
-                if(listaDatos.Count !=0 || listaDatos != null)
+                if (listaDatos.Count !=0 || listaDatos != null)
                     return manager.InsertarAlbaranes(listaDatos);
 
                 return 0;

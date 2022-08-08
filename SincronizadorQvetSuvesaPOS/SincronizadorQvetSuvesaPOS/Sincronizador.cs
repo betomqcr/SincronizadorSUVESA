@@ -46,8 +46,6 @@ namespace SincronizadorQvetSuvesaPOS
 
             try
             {
-                EventLog.WriteEntry(AppDomain.CurrentDomain.BaseDirectory, EventLogEntryType.Error);
-
                 if (Argumento[0].Equals("1"))
                 {
 
@@ -86,7 +84,7 @@ namespace SincronizadorQvetSuvesaPOS
 
                     OnStop();
                 }
-                else
+                else if (Argumento[0].Equals("0"))
                 {
 
                     // Iniciar el tiempo aqui
