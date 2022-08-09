@@ -128,6 +128,12 @@ namespace SincronizadorQvetSuvesaPOS
                     OnStop();
 
                 }
+                else
+                {
+                    bandera = false;
+
+                    OnStop();
+                }
             }
             catch(Exception ex)
             {
