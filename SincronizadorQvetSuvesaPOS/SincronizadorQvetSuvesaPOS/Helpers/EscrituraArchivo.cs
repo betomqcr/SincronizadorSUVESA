@@ -14,7 +14,10 @@ namespace SincronizadorQvetSuvesaPOS.Helpers
         CantidadLineasAlbaranes,
         HoraFinal,
         TiempoEmpleado,
-        TipoProcedimiento
+        TipoProcedimiento,
+        ParametroIncorrecto,
+        Resultados,
+        Error
     }
 
 
@@ -69,6 +72,18 @@ namespace SincronizadorQvetSuvesaPOS.Helpers
 
                             case tipoEscritura.TipoProcedimiento:
                                 value = $"Tipo de procedimiento: {value}";
+                                break;
+
+                            case tipoEscritura.ParametroIncorrecto:
+                                value = $"Parametro incorrecto: {value}";
+                                break;
+
+                            case tipoEscritura.Resultados:
+                                value = $"Resultados actualización: {value}";
+                                break;
+
+                            case tipoEscritura.Error:
+                                value = $"Error de actualización del articulo con el codigo: {value}";
                                 break;
 
                             default:

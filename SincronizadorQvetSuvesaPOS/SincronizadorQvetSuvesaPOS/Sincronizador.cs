@@ -106,11 +106,23 @@ namespace SincronizadorQvetSuvesaPOS
                     GtokenApi.tokenApi = con.GetToken();
 
                     List<ResultadoAPI> res = pro.ActualizarArticulos();
-
+                    int contador = 0;
+                    int conadorM = 0;
                     foreach(ResultadoAPI temp in res)
                     {
-                        //escribir en el archivo
+                        if (temp.res.Equals("1"))
+                            contador++;
+                        else
+                        {
+                            EscrituraArchivo.escribirArchivo(tipoEscritura.Error, temp.codigo.ToString());
+                            EventLog.WriteEntry($"Error de actualización del articulo con el codigo: {temp.codigo.ToString()}", EventLogEntryType.Error);
+                            conadorM++;
+                        }
                     }
+                    if(contador!=0)
+                    EscrituraArchivo.escribirArchivo(tipoEscritura.Resultados, $"{contador} articulos actualizados");
+                    if(conadorM!=0)
+                    EscrituraArchivo.escribirArchivo(tipoEscritura.TiempoEmpleado, $"{conadorM} articulos no actualizados");
 
                     // Escribe Hora Final
                     EscrituraArchivo.escribirArchivo(tipoEscritura.HoraFinal, DateTime.Now.ToString());
@@ -130,6 +142,18 @@ namespace SincronizadorQvetSuvesaPOS
                 }
                 else
                 {
+                    // Establece el nombre del archivo de texto
+                    EscrituraArchivo.nameFile = $"SincronizadorSuvesa{DateTime.Now.ToString("yyyyMMddTHHmmss")}";
+
+                    // Escribe Hora Inicial
+                    EscrituraArchivo.escribirArchivo(tipoEscritura.HoraInicio, DateTime.Now.ToString());
+
+                    // Escribe el Tipo de Procedimiento
+                    EscrituraArchivo.escribirArchivo(tipoEscritura.ParametroIncorrecto, Argumento[0]);
+
+                    // Escribe Hora Final
+                    EscrituraArchivo.escribirArchivo(tipoEscritura.HoraFinal, DateTime.Now.ToString());
+
                     bandera = false;
 
                     OnStop();
