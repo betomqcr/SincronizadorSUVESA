@@ -20,6 +20,6 @@ namespace SincronizadorQvetSuvesaPOS.Models
 
 
         [JsonProperty("precio_unitario")]
-        public long PrecioUnitario { get; set; }
+        public double PrecioUnitario { get; set; }
     }
 }

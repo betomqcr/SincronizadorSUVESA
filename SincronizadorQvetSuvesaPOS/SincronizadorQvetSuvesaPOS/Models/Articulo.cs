@@ -77,7 +77,7 @@ namespace SincronizadorQvetSuvesaPOS.Models
 
 
         [JsonProperty("precio")]
-        public long Precio { get; set; }
+        public double Precio { get; set; }
 
 
 

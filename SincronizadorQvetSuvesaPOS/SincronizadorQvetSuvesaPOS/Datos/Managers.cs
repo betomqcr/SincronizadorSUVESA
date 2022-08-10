@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Data.Entity.SqlServer;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -166,15 +168,35 @@ namespace SincronizadorQvetSuvesaPOS.Datos
         {
             try
             {
-                List<Inventario> lista;
-                var query = from c in entities.Inventarios
-                            where c.FechaIngreso.Equals(DateTime.Now.Date) || c.FechaActualizacion.Equals(DateTime.Now.Date)
-                            select c;
-                lista = query.ToList();
+                List<Inventario> lista = new List<Inventario>();
+
+                var rslt = entities.Inventarios
+                  .Where(v => SqlFunctions.DatePart("year", v.FechaActualizacion) == SqlFunctions.DatePart("year", DateTime.Now))
+                  .Where(v => SqlFunctions.DatePart("dayofyear", v.FechaActualizacion) == SqlFunctions.DatePart("dayofyear", DateTime.Now)) 
+                  .ToList();
+
+                var rslt2 = entities.Inventarios
+                 .Where(v => SqlFunctions.DatePart("year", v.FechaIngreso) == SqlFunctions.DatePart("year", DateTime.Now))
+                 .Where(v => SqlFunctions.DatePart("dayofyear", v.FechaIngreso) == SqlFunctions.DatePart("dayofyear", DateTime.Now))
+                 .ToList();
+
+                foreach( Inventario temp in rslt)
+                {
+                    lista.Add(temp);
+                }
+                
+                foreach (Inventario temp in rslt2)
+                {
+                    Inventario inventario = lista.Find(x => x.Codigo == temp.Codigo);
+                    if(inventario == null)
+                    {
+                        lista.Add(temp);
+                    }
+                }
 
                 return lista;
             
-            }
+            }   
             catch (Exception ex)
             {
                 throw ex;
@@ -186,27 +208,31 @@ namespace SincronizadorQvetSuvesaPOS.Datos
             try
             {
                 List<Articulo> resultado = new List<Articulo>();
+                
 
-                foreach(Inventario temp in lista)
+                foreach (Inventario temp in lista)
                 {
-                    Articulo art = new Articulo()
+                    Articulo art = new Articulo();
+
+                    if(temp.Cod_Articulo != "" && temp.Cod_Articulo.All(char.IsDigit))
                     {
-                        IdArticulo = long.Parse(temp.Cod_Articulo),
-                        Descripcion = temp.Descripcion,
-                        Descripcion2 = temp.Descripcion,
-                        CodigoBarras = temp.Barras,
-                        FactorConversion = 1,
-                        Seccion = null,
-                        Familia = null,
-                        Subfamilia = null,
-                        Tipo = "Normal",
-                        TipoEscandallo = 0,
-                        ControlStock = 0,
-                        FechaAlta = temp.FechaIngreso.ToString(),
-                        Activo=true,
-                        Precio=long.Parse(temp.Precio_A.ToString()),
-                                
-                    };
+                        art.IdArticulo = long.Parse(temp.Cod_Articulo);
+                    }
+
+                    art.Descripcion = temp.Descripcion;
+                    art.Descripcion2 = temp.Descripcion;
+                    art.CodigoBarras = temp.Barras;
+                    art.FactorConversion = 1;
+                    art.Seccion = null;
+                    art.Familia = null;
+                    art.Subfamilia = null;
+                    art.Tipo = "Normal";
+                    art.TipoEscandallo = 0;
+                    art.ControlStock = 0;
+                    art.FechaAlta = temp.FechaIngreso.ToString();
+                    art.Activo = true;
+                    art.Precio = temp.Precio_A;
+
                     Models.Iva iva = new Models.Iva()
                     {
                         Id=22,
@@ -218,7 +244,7 @@ namespace SincronizadorQvetSuvesaPOS.Datos
                     {
                         IdTarifa=46,
                         Nombre= "Tarifa 1",
-                        PrecioUnitario= long.Parse(temp.Precio_A.ToString())
+                        PrecioUnitario= temp.Precio_A
                     };
                     List<ListaTarifa> listaTarifas = new List<ListaTarifa>();
                     art.Iva = iva;

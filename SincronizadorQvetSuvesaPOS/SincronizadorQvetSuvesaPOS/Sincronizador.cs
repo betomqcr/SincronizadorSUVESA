@@ -46,14 +46,15 @@ namespace SincronizadorQvetSuvesaPOS
 
             try
             {
+                bandera = true;
+                string[] Argumento = new string[1];
+                Argumento[0] = "0";
                 if (Argumento[0].Equals("1"))
                 {
 
                     // Iniciar el tiempo aqui
                     Stopwatch stopWatch = new Stopwatch();
                     stopWatch.Start();
-
-                    bandera = true;
 
                     // Establece el nombre del archivo de texto
                     EscrituraArchivo.nameFile = $"SincronizadorSuvesa{DateTime.Now.ToString("yyyyMMddTHHmmss")}";
@@ -91,8 +92,6 @@ namespace SincronizadorQvetSuvesaPOS
                     Stopwatch stopWatch = new Stopwatch();
                     stopWatch.Start();
 
-                    bandera = true;
-
                     // Establece el nombre del archivo de texto
                     EscrituraArchivo.nameFile = $"SincronizadorSuvesa{DateTime.Now.ToString("yyyyMMddTHHmmss")}";
 
@@ -119,10 +118,15 @@ namespace SincronizadorQvetSuvesaPOS
                             conadorM++;
                         }
                     }
-                    if(contador!=0)
-                    EscrituraArchivo.escribirArchivo(tipoEscritura.Resultados, $"{contador} articulos actualizados");
+                    if (contador != 0)
+                    {
+                        EscrituraArchivo.escribirArchivo(tipoEscritura.Resultados, $"Cantidad de registros exitosos {contador}");
+                        EscrituraArchivo.escribirArchivo(tipoEscritura.Resultados, $"Cantidad de registros Actualizados {Estadistica.cantidadActualizados}");
+                        EscrituraArchivo.escribirArchivo(tipoEscritura.Resultados, $"Cantidad de registros Creados {Estadistica.cantidadCreados}");
+                    }
+                   
                     if(conadorM!=0)
-                    EscrituraArchivo.escribirArchivo(tipoEscritura.TiempoEmpleado, $"{conadorM} articulos no actualizados");
+                        EscrituraArchivo.escribirArchivo(tipoEscritura.TiempoEmpleado, $"Cantidad de registros fallidos {conadorM}");
 
                     // Escribe Hora Final
                     EscrituraArchivo.escribirArchivo(tipoEscritura.HoraFinal, DateTime.Now.ToString());

@@ -238,6 +238,8 @@ namespace SincronizadorQvetSuvesaPOS.Conections
             {
                         using (var client = new HttpClient())
                         {
+                            client.DefaultRequestHeaders.Add("Authorization", "Bearer " + GtokenApi.tokenApi);
+
                             var task = Task.Run(async () =>
                             {
                                 return await client.PutAsync(
