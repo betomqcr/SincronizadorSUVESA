@@ -57,22 +57,28 @@ namespace SincronizadorQvetSuvesaPOS.Negocio
             {
                 Estadistica.cantidadActualizados = 0;
                 Estadistica.cantidadCreados = 0;
+
                 List<Inventario> lista = manager.PendientesDeActualizar();
                 List<Articulo> articulos = manager.ConvertirDeInventarioaArticulo(lista);
+
                 List<ResultadoAPI> resultado = new List<ResultadoAPI>();
-                string respuesta;
+                string respuesta = "";
 
                 foreach (Articulo temp in articulos)
                 {
                     
-                    respuesta= con.CrearoActualizarArticulos(temp);
+                    if(temp.IdArticulo != null)
+                    {
+                        respuesta = con.ActualizarArticulos(temp);
 
-                    if(respuesta == "1" && temp.IdArticulo != null)
+                        if(respuesta == "1")
+                            Estadistica.cantidadActualizados++;
+
+                    } else if(temp.IdArticulo == null)
                     {
-                        Estadistica.cantidadActualizados++;
-                    } else if(respuesta == "1" && temp.IdArticulo == null)
-                    {
-                        Estadistica.cantidadCreados++;
+                        respuesta = con.CrearArticulos(temp);
+                        if (respuesta == "1")
+                            Estadistica.cantidadCreados++;
                     }
 
                     ResultadoAPI dato = new ResultadoAPI()

@@ -232,45 +232,89 @@ namespace SincronizadorQvetSuvesaPOS.Conections
             }
         }
 
-        public string CrearoActualizarArticulos(Articulo Articulo)
+        public string CrearArticulos(Articulo Articulo)
         {
             try
             {
-                        using (var client = new HttpClient())
-                        {
-                            client.DefaultRequestHeaders.Add("Authorization", "Bearer " + GtokenApi.tokenApi);
+                using (var client = new HttpClient())
+                {
+                    client.DefaultRequestHeaders.Add("Authorization", "Bearer " + GtokenApi.tokenApi);
 
-                            var task = Task.Run(async () =>
-                            {
-                                return await client.PutAsync(
-                                   GLinkApi.linkApi + "/articulos",
-                                    new StringContent(Articulo.ToString(), Encoding.UTF8, "application/json")
-                                );
-                            }
-                            );
-                            HttpResponseMessage message = task.Result;
-                            if (message.StatusCode == System.Net.HttpStatusCode.OK)
-                            {
-                                return "1";
-                            }
-                            else if (message.StatusCode == System.Net.HttpStatusCode.NotFound)
-                            {
-                                return "0";
-                            }
-                            else
-                            {
-                                var task2 = Task<string>.Run(async () =>
-                                {
-                                    return await message.Content.ReadAsStringAsync();
-                                });
-                                string mens = task2.Result;
-                                ModelError error = JsonConvert.DeserializeObject<ModelError>(mens);
-                                return error.Exceptionmessage;
-                            }
-                        }
+                    var task = Task.Run(async () =>
+                    {
+                        return await client.PutAsync(
+                            GLinkApi.linkApi + "/articulos",
+                            new StringContent(Articulo.ToString(), Encoding.UTF8, "application/json")
+                        );
+                    }
+                    );
+                    HttpResponseMessage message = task.Result;
+                    if (message.StatusCode == System.Net.HttpStatusCode.OK)
+                    {
+                        return "1";
+                    }
+                    else if (message.StatusCode == System.Net.HttpStatusCode.NotFound)
+                    {
+                        return "0";
+                    }
+                    else
+                    {
+                        var task2 = Task<string>.Run(async () =>
+                        {
+                            return await message.Content.ReadAsStringAsync();
+                        });
+                        string mens = task2.Result;
+                        ModelError error = JsonConvert.DeserializeObject<ModelError>(mens);
+                        return error.Exceptionmessage;
+                    }
+                }
                    
             }
             catch(Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public string ActualizarArticulos(Articulo Articulo)
+        {
+            try
+            {
+                using (var client = new HttpClient())
+                {
+                    client.DefaultRequestHeaders.Add("Authorization", "Bearer " + GtokenApi.tokenApi);
+
+                    var task = Task.Run(async () =>
+                    {
+                        return await client.PutAsync(
+                            GLinkApi.linkApi + "/articulos",
+                            new StringContent(Articulo.ToString(), Encoding.UTF8, "application/json")
+                        );
+                    }
+                    );
+                    HttpResponseMessage message = task.Result;
+                    if (message.StatusCode == System.Net.HttpStatusCode.OK)
+                    {
+                        return "1";
+                    }
+                    else if (message.StatusCode == System.Net.HttpStatusCode.NotFound)
+                    {
+                        return "0";
+                    }
+                    else
+                    {
+                        var task2 = Task<string>.Run(async () =>
+                        {
+                            return await message.Content.ReadAsStringAsync();
+                        });
+                        string mens = task2.Result;
+                        ModelError error = JsonConvert.DeserializeObject<ModelError>(mens);
+                        return error.Exceptionmessage;
+                    }
+                }
+
+            }
+            catch (Exception ex)
             {
                 throw ex;
             }

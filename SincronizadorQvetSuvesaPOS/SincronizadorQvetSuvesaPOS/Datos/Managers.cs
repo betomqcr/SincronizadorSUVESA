@@ -113,7 +113,6 @@ namespace SincronizadorQvetSuvesaPOS.Datos
         }
 
         //un metodo para obtener id del alabaran insertado(id Qvet migrado)
-
         public bool ExisteAlbaranInsertado(long registro)
         {
             try
@@ -262,8 +261,6 @@ namespace SincronizadorQvetSuvesaPOS.Datos
                 throw ex;
             }
         }
-
-
 
     }
 }
