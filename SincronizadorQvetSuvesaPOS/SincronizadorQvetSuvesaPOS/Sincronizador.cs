@@ -47,8 +47,7 @@ namespace SincronizadorQvetSuvesaPOS
             try
             {
                 bandera = true;
-                string[] Argumento = new string[1];
-                Argumento[0] = "0";
+
                 if (Argumento[0].Equals("1"))
                 {
 

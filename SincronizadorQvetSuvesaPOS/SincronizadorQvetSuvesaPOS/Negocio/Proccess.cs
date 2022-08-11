@@ -16,6 +16,7 @@ namespace SincronizadorQvetSuvesaPOS.Negocio
         Managers manager = new Managers();
         Conections.Conections con = new Conections.Conections();
         Modelos.Marca marca = new Modelos.Marca();// modelo
+        Models.Marca marcaArt = new Models.Marca();
         
         public Proccess() { }
 
@@ -58,6 +59,8 @@ namespace SincronizadorQvetSuvesaPOS.Negocio
                 Estadistica.cantidadActualizados = 0;
                 Estadistica.cantidadCreados = 0;
 
+                List<Articulo> articulosAPI = obtenerTodosArticulosAPI();
+
                 List<Inventario> lista = manager.PendientesDeActualizar();
                 List<Articulo> articulos = manager.ConvertirDeInventarioaArticulo(lista);
 
@@ -66,34 +69,65 @@ namespace SincronizadorQvetSuvesaPOS.Negocio
 
                 foreach (Articulo temp in articulos)
                 {
-                    
-                    if(temp.IdArticulo != null)
-                    {
-                        respuesta = con.ActualizarArticulos(temp);
+                    Articulo isValidArt = articulosAPI.Find(x => x.Descripcion == temp.Descripcion && x.IdArticulo == temp.IdArticulo);
 
-                        if(respuesta == "1")
-                            Estadistica.cantidadActualizados++;
-
-                    } else if(temp.IdArticulo == null)
+                    if( isValidArt == null || (isValidArt != null && temp.IdArticulo != null))
                     {
-                        respuesta = con.CrearArticulos(temp);
-                        if (respuesta == "1")
-                            Estadistica.cantidadCreados++;
+                        if (temp.IdArticulo != null)
+                        {
+                            respuesta = con.ActualizarArticulos(temp);
+
+                            if (respuesta == "1")
+                                Estadistica.cantidadActualizados++;
+
+                        }
+                        else if (temp.IdArticulo == null)
+                        {
+                            respuesta = con.CrearArticulos(temp);
+                            if (respuesta == "1")
+                                Estadistica.cantidadCreados++;
+                        }
+
+                        ResultadoAPI dato = new ResultadoAPI()
+                        {
+                            codigo = (temp.IdArticulo != null) ? long.Parse(temp.IdArticulo.ToString()) : 0,
+                            res = respuesta
+
+                        };
+                        resultado.Add(dato);
                     }
-
-                    ResultadoAPI dato = new ResultadoAPI()
-                    {
-                        codigo= (temp.IdArticulo != null) ? long.Parse(temp.IdArticulo.ToString()) : 0,
-                        res= respuesta
-
-                    };
-                    resultado.Add(dato);
+                    
                 }
 
                 return resultado;
 
             }
             catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        private List<Articulo> obtenerTodosArticulosAPI()
+        {
+            try
+            {
+                List<Articulo> listaArt = new List<Articulo>();
+                long paginas = con.ObtenerPaginasTotalesArticulos();
+
+                for (int i = 1; i <= paginas; i++)
+                {
+                    marcaArt = con.ObtenerResultadosApiArticulos(i);
+
+                    foreach (Models.Articulo datos in marcaArt.Articulos)
+                    {
+                        listaArt.Add(datos);
+                    }
+                }
+
+                return listaArt;
+
+            } catch(Exception ex)
             {
                 throw ex;
             }

@@ -232,6 +232,104 @@ namespace SincronizadorQvetSuvesaPOS.Conections
             }
         }
 
+        public long ObtenerPaginasTotalesArticulos()// obtener las paginas del articulos
+        {
+            try
+            {
+
+                Solicitud solicitud = new Solicitud();
+
+                Models.Marca marca = new Models.Marca();
+
+                using (var client = new HttpClient())
+                {
+                    client.DefaultRequestHeaders.Add("Authorization", "Bearer " + GtokenApi.tokenApi);
+                    var task = Task.Run(async () =>
+                    {
+                        return await client.PostAsync(
+                            GLinkApi.linkApi + "/articulos",
+                            new StringContent(solicitud.ToString(), Encoding.UTF8, "application/json")
+                        ); ;
+                    }
+                    );
+                    HttpResponseMessage message = task.Result;
+                    if (message.StatusCode == System.Net.HttpStatusCode.OK)
+                    {
+
+                        var task2 = Task<string>.Run(async () =>
+                        {
+                            return await message.Content.ReadAsStringAsync();
+                        });
+                        var jsonstrig = task2.Result;
+
+                        marca = JsonConvert.DeserializeObject<Models.Marca>(jsonstrig);
+
+                        return marca.PaginasTotales;
+                    }
+                    else if (message.StatusCode == System.Net.HttpStatusCode.Conflict)
+                    {
+                        return 0;
+                    }
+
+                }
+                return 0;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public Models.Marca ObtenerResultadosApiArticulos(long pagina)// obtener las ventas del api
+        {
+            try
+            {
+
+                Solicitud solicitud = new Solicitud()
+                {
+                    Pagina = pagina
+                };
+
+                Models.Marca marca = new Models.Marca();
+
+                using (var client = new HttpClient())
+                {
+                    client.DefaultRequestHeaders.Add("Authorization", "Bearer " + GtokenApi.tokenApi);
+                    var task = Task.Run(async () =>
+                    {
+                        return await client.PostAsync(
+                            GLinkApi.linkApi + "/articulos",
+                            new StringContent(solicitud.ToString(), Encoding.UTF8, "application/json")
+                        );
+                    });
+
+                    HttpResponseMessage message = task.Result;
+
+                    if (message.StatusCode == System.Net.HttpStatusCode.OK)
+                    {
+                        var task2 = Task<string>.Run(async () =>
+                        {
+                            return await message.Content.ReadAsStringAsync();
+                        });
+                        var jsonstrig = task2.Result;
+                        marca = JsonConvert.DeserializeObject<Models.Marca>(jsonstrig);
+
+                        return marca;
+                    }
+                    else if (message.StatusCode == System.Net.HttpStatusCode.Conflict)
+                    {
+                        return marca;
+                    }
+
+                }
+                return marca;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public string CrearArticulos(Articulo Articulo)
         {
             try

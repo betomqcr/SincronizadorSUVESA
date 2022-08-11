@@ -112,6 +112,8 @@
     <Compile Include="Modelos\Tarifa.cs" />
     <Compile Include="Modelos\Token.cs" />
     <Compile Include="Models\Articulo.cs" />
+    <Compile Include="Models\ArticuloCrear.cs" />
+    <Compile Include="Models\ArticuloModificar.cs" />
     <Compile Include="Models\Converter.cs" />
     <Compile Include="Models\Estadistica.cs" />
     <Compile Include="Models\Familia.cs" />
