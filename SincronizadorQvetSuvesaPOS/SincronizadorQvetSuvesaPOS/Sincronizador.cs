@@ -38,6 +38,7 @@ namespace SincronizadorQvetSuvesaPOS
         {
             // TODO: agregar código aquí para realizar cualquier anulación necesaria para detener el servicio.
             st_Inicio.Stop();
+            this.Stop();
         }
 
         private void st_Inicio_Elapsed(object sender, System.Timers.ElapsedEventArgs e)

@@ -69,7 +69,7 @@ namespace SincronizadorQvetSuvesaPOS.Negocio
 
                 foreach (Articulo temp in articulos)
                 {
-                    Articulo isValidArt = articulosAPI.Find(x => x.Descripcion == temp.Descripcion && x.IdArticulo == temp.IdArticulo);
+                    Articulo isValidArt = articulosAPI.Find(x => x.Descripcion == temp.Descripcion || x.IdArticulo == temp.IdArticulo);
 
                     if( isValidArt == null || (isValidArt != null && temp.IdArticulo != null))
                     {
