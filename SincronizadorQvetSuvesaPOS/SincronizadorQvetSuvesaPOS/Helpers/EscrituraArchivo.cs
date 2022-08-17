@@ -17,7 +17,8 @@ namespace SincronizadorQvetSuvesaPOS.Helpers
         TipoProcedimiento,
         ParametroIncorrecto,
         Resultados,
-        Error
+        Error,
+        Bitacora
     }
 
 
@@ -84,6 +85,10 @@ namespace SincronizadorQvetSuvesaPOS.Helpers
 
                             case tipoEscritura.Error:
                                 value = $"Error de actualización del articulo con el codigo: {value}";
+                                break;
+
+                            case tipoEscritura.Bitacora:
+                                value = $"Se escribió en la bitacora: {value}";
                                 break;
 
                             default:

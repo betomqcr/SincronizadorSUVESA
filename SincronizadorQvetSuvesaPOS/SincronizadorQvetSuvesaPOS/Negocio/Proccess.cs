@@ -41,7 +41,12 @@ namespace SincronizadorQvetSuvesaPOS.Negocio
                     }
                 }
                 if (listaDatos.Count !=0 || listaDatos != null)
+                {
+                    Dato first = listaDatos.First();
+                    Dato last = listaDatos.Last();
+                    Bitacora.Observaciones = $"Se inserto desde el número de albaran {first.IdAlbaran} hasta el número de albran {last.IdAlbaran}";
                     return manager.InsertarAlbaranes(listaDatos);
+                }
 
                 return 0;
                 
@@ -128,6 +133,18 @@ namespace SincronizadorQvetSuvesaPOS.Negocio
                 return listaArt;
 
             } catch(Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public void escribirBitacora()
+        {
+            try
+            {
+                manager.InsertarBitacora();
+            }
+            catch (Exception ex)
             {
                 throw ex;
             }

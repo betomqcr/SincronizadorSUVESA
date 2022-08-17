@@ -49,8 +49,13 @@ namespace SincronizadorQvetSuvesaPOS
             {
                 bandera = true;
 
-                if (Argumento[0].Equals("1"))
+                string[] args = Argumento[0].Split(',');
+
+                if (args[0].Equals("1"))
                 {
+
+                    Bitacora.UsuarioSuvesa = args[1];
+                    Bitacora.Accion = "Ventas";
 
                     // Iniciar el tiempo aqui
                     Stopwatch stopWatch = new Stopwatch();
@@ -70,6 +75,9 @@ namespace SincronizadorQvetSuvesaPOS
 
                     int res = pro.insertarDatos();
 
+                    //Insertar en bitacora
+                    pro.escribirBitacora();
+
                     // Escribe Hora Final
                     EscrituraArchivo.escribirArchivo(tipoEscritura.HoraFinal, DateTime.Now.ToString());
 
@@ -85,8 +93,11 @@ namespace SincronizadorQvetSuvesaPOS
 
                     OnStop();
                 }
-                else if (Argumento[0].Equals("0"))
+                else if (args[0].Equals("0"))
                 {
+
+                    Bitacora.UsuarioSuvesa = args[1];
+                    Bitacora.Accion = "Articulos";
 
                     // Iniciar el tiempo aqui
                     Stopwatch stopWatch = new Stopwatch();
@@ -105,6 +116,9 @@ namespace SincronizadorQvetSuvesaPOS
                     GtokenApi.tokenApi = con.GetToken();
 
                     List<ResultadoAPI> res = pro.ActualizarArticulos();
+
+                   
+
                     int contador = 0;
                     int conadorM = 0;
                     foreach(ResultadoAPI temp in res)
@@ -127,6 +141,10 @@ namespace SincronizadorQvetSuvesaPOS
                    
                     if(conadorM!=0)
                         EscrituraArchivo.escribirArchivo(tipoEscritura.TiempoEmpleado, $"Cantidad de registros fallidos {conadorM}");
+
+                    Bitacora.Observaciones = $"Cantidad de registros exitosos {contador}";
+                    //Insertar en bitacora
+                    pro.escribirBitacora();
 
                     // Escribe Hora Final
                     EscrituraArchivo.escribirArchivo(tipoEscritura.HoraFinal, DateTime.Now.ToString());

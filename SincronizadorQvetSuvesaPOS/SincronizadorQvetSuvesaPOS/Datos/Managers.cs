@@ -262,5 +262,32 @@ namespace SincronizadorQvetSuvesaPOS.Datos
             }
         }
 
+        public int InsertarBitacora()
+        {
+            try
+            {
+                Bitacora_Albaran bitacora = new Bitacora_Albaran()
+                {
+                    Usuario_Suvesa = Bitacora.UsuarioSuvesa,
+                    Accion = Bitacora.Accion,
+                    Fecha_Hora = DateTime.Now,
+                    Observaciones = Bitacora.Observaciones
+                };
+
+                entities.Bitacora_Albaran.Add(bitacora);
+                int res = entities.SaveChanges();
+
+                //Escribrir el archivo
+                if(res != 0)
+                    EscrituraArchivo.escribirArchivo(tipoEscritura.Bitacora, Bitacora.UsuarioSuvesa);
+
+                return res;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
     }
 }

@@ -14,11 +14,11 @@ namespace SincronizadorQvetSuvesaPOS.Datos
     
     public partial class Bitacora_Albaran
     {
-        public int id { get; set; }
-        public string NombreEquipo { get; set; }
-        public System.DateTime Fecha { get; set; }
-        public System.TimeSpan hora { get; set; }
-        public string usuario { get; set; }
-        public decimal CantidadRegistrosProcesados { get; set; }
+        public long Id { get; set; }
+        public Nullable<long> Id_Albaran { get; set; }
+        public string Usuario_Suvesa { get; set; }
+        public System.DateTime Fecha_Hora { get; set; }
+        public string Accion { get; set; }
+        public string Observaciones { get; set; }
     }
 }

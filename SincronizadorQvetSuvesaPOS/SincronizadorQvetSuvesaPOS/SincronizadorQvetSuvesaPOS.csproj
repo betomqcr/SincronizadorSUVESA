@@ -92,6 +92,7 @@
     </Compile>
     <Compile Include="Datos\Managers.cs" />
     <Compile Include="Helpers\EscrituraArchivo.cs" />
+    <Compile Include="Modelos\Bitacora.cs" />
     <Compile Include="Modelos\GtokenApi.cs" />
     <Compile Include="Modelos\Solicitud1.cs" />
     <Compile Include="Modelos\Solicitud.cs" />

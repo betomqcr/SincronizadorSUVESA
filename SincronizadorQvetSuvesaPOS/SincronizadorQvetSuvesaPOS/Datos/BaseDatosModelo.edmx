@@ -42,14 +42,14 @@
         </EntityType>
         <EntityType Name="Bitacora_Albaran">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="NombreEquipo" Type="nvarchar" MaxLength="1" Nullable="false" />
-          <Property Name="Fecha" Type="date" Nullable="false" />
-          <Property Name="hora" Type="time" Precision="7" Nullable="false" />
-          <Property Name="usuario" Type="nvarchar" MaxLength="1" Nullable="false" />
-          <Property Name="CantidadRegistrosProcesados" Type="numeric" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id_Albaran" Type="bigint" />
+          <Property Name="Usuario_Suvesa" Type="nvarchar" MaxLength="75" Nullable="false" />
+          <Property Name="Fecha_Hora" Type="datetime" Nullable="false" />
+          <Property Name="Accion" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Observaciones" Type="nvarchar" MaxLength="1000" Nullable="false" />
         </EntityType>
         <EntityType Name="Inventario">
           <Key>
@@ -212,17 +212,6 @@
           <Property Name="Unidad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Albaran" Relationship="Self.FK_IdEncabezado" FromRole="Albaran_Detalle" ToRole="Albaran" />
         </EntityType>
-        <EntityType Name="Bitacora_Albaran">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="NombreEquipo" Type="String" MaxLength="1" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="hora" Type="Time" Nullable="false" Precision="7" />
-          <Property Name="usuario" Type="String" MaxLength="1" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="CantidadRegistrosProcesados" Type="Decimal" Precision="18" Scale="4" Nullable="false" />
-        </EntityType>
         <Association Name="FK_IdEncabezado">
           <End Role="Albaran" Type="Self.Albaran" Multiplicity="1" />
           <End Role="Albaran_Detalle" Type="Self.Albaran_Detalle" Multiplicity="*" />
@@ -238,12 +227,12 @@
         <EntityContainer Name="SINCRONIZADOREntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Albarans" EntityType="Self.Albaran" />
           <EntitySet Name="Albaran_Detalle" EntityType="Self.Albaran_Detalle" />
-          <EntitySet Name="Bitacora_Albaran" EntityType="Self.Bitacora_Albaran" />
           <AssociationSet Name="FK_IdEncabezado" Association="Self.FK_IdEncabezado">
             <End Role="Albaran" EntitySet="Albarans" />
             <End Role="Albaran_Detalle" EntitySet="Albaran_Detalle" />
           </AssociationSet>
           <EntitySet Name="Inventarios" EntityType="SINCRONIZADORModel.Inventario" />
+          <EntitySet Name="Bitacora_Albaran" EntityType="SINCRONIZADORModel.Bitacora_Albaran" />
         </EntityContainer>
         <EntityType Name="Inventario">
           <Key>
@@ -343,6 +332,17 @@
           <Property Name="Web" Type="Boolean" Nullable="false" />
           <Property Name="SoloUsoInterno" Type="Boolean" Nullable="false" />
         </EntityType>
+        <EntityType Name="Bitacora_Albaran">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_Albaran" Type="Int64" />
+          <Property Name="Usuario_Suvesa" Type="String" Nullable="false" MaxLength="75" FixedLength="false" Unicode="true" />
+          <Property Name="Fecha_Hora" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Accion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Observaciones" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -383,18 +383,6 @@
                 <ScalarProperty Name="PrecioVenta" ColumnName="PrecioVenta" />
                 <ScalarProperty Name="Total" ColumnName="Total" />
                 <ScalarProperty Name="Unidad" ColumnName="Unidad" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Bitacora_Albaran">
-            <EntityTypeMapping TypeName="SINCRONIZADORModel.Bitacora_Albaran">
-              <MappingFragment StoreEntitySet="Bitacora_Albaran">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="NombreEquipo" ColumnName="NombreEquipo" />
-                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
-                <ScalarProperty Name="hora" ColumnName="hora" />
-                <ScalarProperty Name="usuario" ColumnName="usuario" />
-                <ScalarProperty Name="CantidadRegistrosProcesados" ColumnName="CantidadRegistrosProcesados" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -494,6 +482,18 @@
                 <ScalarProperty Name="Barras" ColumnName="Barras" />
                 <ScalarProperty Name="Cod_Articulo" ColumnName="Cod_Articulo" />
                 <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Bitacora_Albaran">
+            <EntityTypeMapping TypeName="SINCRONIZADORModel.Bitacora_Albaran">
+              <MappingFragment StoreEntitySet="Bitacora_Albaran">
+                <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+                <ScalarProperty Name="Accion" ColumnName="Accion" />
+                <ScalarProperty Name="Fecha_Hora" ColumnName="Fecha_Hora" />
+                <ScalarProperty Name="Usuario_Suvesa" ColumnName="Usuario_Suvesa" />
+                <ScalarProperty Name="Id_Albaran" ColumnName="Id_Albaran" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
