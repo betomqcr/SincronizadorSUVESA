@@ -40,7 +40,7 @@ namespace SincronizadorQvetSuvesaPOS.Negocio
                         }
                     }
                 }
-                if (listaDatos.Count !=0 || listaDatos != null)
+                if (listaDatos.Count !=0)
                 {
                     Dato first = listaDatos.First();
                     Dato last = listaDatos.Last();
