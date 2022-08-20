@@ -47,8 +47,13 @@ namespace SincronizadorQvetSuvesaPOS.Negocio
                     Bitacora.Observaciones = $"Se inserto desde el número de albaran {first.IdAlbaran} hasta el número de albran {last.IdAlbaran}";
                     return manager.InsertarAlbaranes(listaDatos);
                 }
+                else
+                {
+                    Bitacora.Observaciones = $"No se inserto nada en la base de datos";
+                    return 0;
+                }
 
-                return 0;
+                //return 0;
                 
             }
             catch (Exception ex)

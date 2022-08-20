@@ -31,15 +31,24 @@ namespace SincronizadorQvetSuvesaPOS
         {
             // TODO: agregar código aquí para iniciar el servicio.
             st_Inicio.Start();
-            Argumento = args;
+           Argumento = args;
+
         }
 
         protected override void OnStop()
         {
-            // TODO: agregar código aquí para realizar cualquier anulación necesaria para detener el servicio.
-            st_Inicio.Stop();
-            this.Stop();
-        }
+            try
+            {
+                // TODO: agregar código aquí para realizar cualquier anulación necesaria para detener el servicio.
+                st_Inicio.Stop();
+                this.Stop();
+            }
+            catch (Exception ex)
+            {
+                EventLog.WriteEntry(ex.Message, EventLogEntryType.Error);
+            }
+
+        } 
 
         private void st_Inicio_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
@@ -48,6 +57,7 @@ namespace SincronizadorQvetSuvesaPOS
             try
             {
                 bandera = true;
+                
 
                 string[] args = Argumento[0].Split(',');
 
