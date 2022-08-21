@@ -13,12 +13,18 @@ namespace SincronizadorQvetSuvesaPOS.Negocio
 {
     public  class Proccess
     {
-        Managers manager = new Managers();
-        Conections.Conections con = new Conections.Conections();
-        Modelos.Marca marca = new Modelos.Marca();// modelo
-        Models.Marca marcaArt = new Models.Marca();
+        Managers manager;
+        Conections.Conections con;
+        Modelos.Marca marca;// modelo 
+        Models.Marca marcaArt;
         
-        public Proccess() { }
+        public Proccess() 
+        {
+            manager = new Managers();
+            con = new Conections.Conections();
+            marca = new Modelos.Marca();
+            marcaArt = new Models.Marca();
+        }
 
         public int insertarDatos()
         {
@@ -26,10 +32,12 @@ namespace SincronizadorQvetSuvesaPOS.Negocio
             {
                 long paginas = con.ObtenerPaginasTotales();
                 List<Dato> listaDatos = new List<Dato>();
+                List<Albaran> listaAlbaran = new List<Albaran>();
 
                 for (int i=1; i<=paginas; i++)
                 {
                     marca = con.ObtenerResultadosApiVentas(i);
+                    listaAlbaran = manager.ObtenerAlbaranesInsertados(marca.Datos);
                     
                     foreach (Dato datos in marca.Datos)
                     {
@@ -37,6 +45,19 @@ namespace SincronizadorQvetSuvesaPOS.Negocio
                         {
                            if(manager.ObtenerUltimoIdInsertado() < datos.IdAlbaran)
                             listaDatos.Add(datos);
+                        }
+                        else
+                        {
+                            foreach(Albaran al in listaAlbaran)
+                            {
+                                if(manager.ActualizarAlbaran(datos,al))
+                                {
+                                   if( manager.BorrarAlbaranesPorActualizar(al))
+                                    {
+                                        listaDatos.Add(datos);
+                                    }
+                                }
+                            }
                         }
                     }
                 }
@@ -61,6 +82,8 @@ namespace SincronizadorQvetSuvesaPOS.Negocio
                 throw ex;
             }
         }
+
+        
 
         public List<ResultadoAPI> ActualizarArticulos()
         {

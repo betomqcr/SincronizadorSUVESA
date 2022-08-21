@@ -163,6 +163,97 @@ namespace SincronizadorQvetSuvesaPOS.Datos
             }
         }
 
+        public bool ActualizarAlbaran(Dato dato, Albaran albaran )
+        {
+            try
+            {
+                decimal SumaDato = 0;
+                decimal SumaAlbaran = 0;
+
+                foreach(ListaLinea temp in dato.ListaLineas)
+                {
+                    SumaDato = SumaDato + temp.Total;
+                }
+                foreach (Albaran_Detalle temp2 in albaran.Albaran_Detalle)
+                {
+                    SumaAlbaran = SumaAlbaran + temp2.Total;
+                }
+
+                if(SumaAlbaran==SumaDato)
+                  return false;
+                else
+                    return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public bool BorrarAlbaranesPorActualizar(Albaran albaran)
+        {
+            try
+            {
+                if(albaran.facturado==true || albaran.facturado==null)
+                {
+                    long id = entities.Albarans.FirstOrDefault(x => x.Id_Qvet_Migrado == albaran.Id_Qvet_Migrado).id;
+                    Albaran_Detalle temp = entities.Albaran_Detalle.FirstOrDefault(x => x.idEncabezado == id);
+                    Albaran temp2 = entities.Albarans.FirstOrDefault(x => x.Id_Qvet_Migrado == albaran.Id_Qvet_Migrado);
+                    entities.Albaran_Detalle.Remove(temp);
+                    int res1 = entities.SaveChanges();
+                    if (res1!=0)
+                    {
+                        entities.Albarans.Remove(temp2);
+                        int res2 = entities.SaveChanges();
+                        if(res2!=0)
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }    
+                    }
+                    else
+                    {
+                        return false;
+                    }                      
+
+                }
+                else
+                {
+                    return false;
+                }
+                
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
+        public List<Albaran> ObtenerAlbaranesInsertados(List<Dato> datos)
+        {
+            try
+            {
+                List<Albaran> lista = new List<Albaran>();
+
+                foreach(Dato temp in datos)
+                {
+                    Albaran temp2 = entities.Albarans.FirstOrDefault(x => x.Id_Qvet_Migrado == temp.IdAlbaran);
+
+                    lista.Add(temp2);
+
+                }
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public List<Inventario> PendientesDeActualizar()
         {
             try
