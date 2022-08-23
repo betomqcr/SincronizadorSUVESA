@@ -80,6 +80,7 @@ namespace SincronizadorQvetSuvesaPOS.Negocio
                 }
                 else
                 {
+                    EscrituraArchivo.escribirArchivo(tipoEscritura.CantidadAlbaranes, "0");
                     Bitacora.Observaciones = $"No se inserto nada en la base de datos";
                     return 0;
                 }

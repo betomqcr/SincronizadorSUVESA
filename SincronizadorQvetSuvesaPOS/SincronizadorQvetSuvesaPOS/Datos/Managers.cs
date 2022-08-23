@@ -80,7 +80,10 @@ namespace SincronizadorQvetSuvesaPOS.Datos
                 EscrituraArchivo.escribirArchivo(tipoEscritura.CantidadLineasAlbaranes, resb.ToString());
 
                 if (resa == 0 && resb == 0)
+                
+                    
                     return 0;
+               
                 else
                     return resa;
             }
@@ -464,6 +467,7 @@ namespace SincronizadorQvetSuvesaPOS.Datos
                 //Escribrir el archivo
                 if(res != 0)
                     EscrituraArchivo.escribirArchivo(tipoEscritura.Bitacora, Bitacora.UsuarioSuvesa);
+               
 
                 return res;
             }
