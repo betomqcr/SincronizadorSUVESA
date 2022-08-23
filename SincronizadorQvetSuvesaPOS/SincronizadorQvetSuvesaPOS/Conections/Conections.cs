@@ -135,7 +135,7 @@ namespace SincronizadorQvetSuvesaPOS.Conections
 
                 Solicitud solicitud = new Solicitud()
                 {
-                    DesdeFechaActualizacion = DateTime.Now.ToString("yyyy/MM/dd"),
+                    DesdeFechaActualizacion = DateTime.Today.AddDays(-1).ToString("yyyy/MM/dd"),
                     Pagina = pagina
                 };
 
@@ -186,7 +186,7 @@ namespace SincronizadorQvetSuvesaPOS.Conections
 
                 Solicitud solicitud = new Solicitud()
                 {
-                    DesdeFechaActualizacion = DateTime.Now.ToString("yyyy/MM/dd"),
+                    DesdeFechaActualizacion = DateTime.Today.AddDays(-1).ToString("yyyy/MM/dd"),
                     Pagina = 1
                 };
 

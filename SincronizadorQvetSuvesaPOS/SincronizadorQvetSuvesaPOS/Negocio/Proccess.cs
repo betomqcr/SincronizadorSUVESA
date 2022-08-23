@@ -32,27 +32,36 @@ namespace SincronizadorQvetSuvesaPOS.Negocio
             {
                 long paginas = con.ObtenerPaginasTotales();
                 List<Dato> listaDatos = new List<Dato>();
+                List<Dato> listaDatosTemp = new List<Dato>();
                 List<Albaran> listaAlbaran = new List<Albaran>();
 
                 for (int i=1; i<=paginas; i++)
                 {
                     marca = con.ObtenerResultadosApiVentas(i);
                     listaAlbaran = manager.ObtenerAlbaranesInsertados(marca.Datos);
-                    
+                    //listaDatosTemp = manager.ObtenerDatosInsertados(marca.Datos);
+
+                    //foreach(Albaran albaran in listaAlbaran)
+                    //{
+                    //    manager.BorrarAlbaranesPorActualizar(albaran);
+                    //}                    
+
                     foreach (Dato datos in marca.Datos)
                     {
                         if (!manager.ExisteAlbaranInsertado(datos.IdAlbaran))
                         {
-                           if(manager.ObtenerUltimoIdInsertado() < datos.IdAlbaran)
-                            listaDatos.Add(datos);
+                            if(manager.ObtenerUltimoIdInsertado() < datos.IdAlbaran)
+                            {
+                                listaDatos.Add(datos);
+                            }
                         }
                         else
                         {
-                            foreach(Albaran al in listaAlbaran)
+                            foreach (Albaran al in listaAlbaran)
                             {
-                                if(manager.ActualizarAlbaran(datos,al))
+                                if (manager.ActualizarAlbaran(datos, al))
                                 {
-                                   if( manager.BorrarAlbaranesPorActualizar(al))
+                                    if (manager.BorrarAlbaranesPorActualizar(al))
                                     {
                                         listaDatos.Add(datos);
                                     }
@@ -61,6 +70,7 @@ namespace SincronizadorQvetSuvesaPOS.Negocio
                         }
                     }
                 }
+
                 if (listaDatos.Count !=0)
                 {
                     Dato first = listaDatos.First();

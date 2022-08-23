@@ -57,9 +57,12 @@ namespace SincronizadorQvetSuvesaPOS
             try
             {
                 bandera = true;
-                
 
-                string[] args = Argumento[0].Split(',');
+
+                //string[] args = Argumento[0].Split(',');
+                string[] args = new string[2];
+                args[0] = "1";
+                args[1] = "BETICO";
 
                 if (args[0].Equals("1"))
                 {
