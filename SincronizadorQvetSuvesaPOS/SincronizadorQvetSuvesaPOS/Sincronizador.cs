@@ -58,15 +58,10 @@ namespace SincronizadorQvetSuvesaPOS
             {
                 bandera = true;
 
-
-                //string[] args = Argumento[0].Split(',');
-                string[] args = new string[2];
-                args[0] = "1";
-                args[1] = "BETICO";
+                string[] args = Argumento[0].Split(',');
 
                 if (args[0].Equals("1"))
                 {
-
                     Bitacora.UsuarioSuvesa = args[1];
                     Bitacora.Accion = "Ventas";
 
