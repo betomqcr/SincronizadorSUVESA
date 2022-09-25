@@ -20,28 +20,28 @@ namespace SincronizadorQvetSuvesaPOS.Modelos
         public string Descripcion { get; set; }
 
         [JsonProperty("cantidad")]
-        public long Cantidad { get; set; }
+        public decimal Cantidad { get; set; }
 
         [JsonProperty("pvp")]
-        public long Pvp { get; set; }
+        public decimal Pvp { get; set; }
 
         [JsonProperty("descuento")]
-        public long Descuento { get; set; }
+        public decimal Descuento { get; set; }
 
         [JsonProperty("iva")]
         public Iva Iva { get; set; }
 
         [JsonProperty("importe_base")]
-        public long ImporteBase { get; set; }
+        public decimal ImporteBase { get; set; }
 
         [JsonProperty("importe_irpf")]
-        public long ImporteIrpf { get; set; }
+        public decimal ImporteIrpf { get; set; }
 
         [JsonProperty("importe_iva")]
-        public long ImporteIva { get; set; }
+        public decimal ImporteIva { get; set; }
 
         [JsonProperty("total")]
-        public long Total { get; set; }
+        public decimal Total { get; set; }
 
         [JsonProperty("lote")]
         public object Lote { get; set; }

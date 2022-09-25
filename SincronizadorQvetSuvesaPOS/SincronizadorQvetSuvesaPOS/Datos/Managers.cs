@@ -35,7 +35,7 @@ namespace SincronizadorQvetSuvesaPOS.Datos
                     a.NombreMascota = (dato.Mascota == null) ? " " : dato.Mascota.Nombre;
                     a.Fecha = DateTime.Parse(dato.Fecha.ToString());
                     a.Id_Qvet_Migrado = dato.IdAlbaran;
-                    a.Cedula = dato.Cliente.Documento;
+                    a.Cedula = dato.Cliente.CifNif;
                     a.Id_Mascota_Qvet = (dato.Mascota == null) ? 0 : int.Parse(dato.Mascota.IdMascota.ToString());
                     a.Email = dato.Cliente.Email;
                     a.Direccion = dato.Cliente.Domicilio;
