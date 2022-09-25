@@ -330,10 +330,11 @@ namespace SincronizadorQvetSuvesaPOS.Conections
             }
         }
 
-        public string CrearArticulos(Articulo Articulo)
+        public RespuestaArticulos CrearArticulos(Articulo Articulo)
         {
             try
             {
+                RespuestaArticulos res = new RespuestaArticulos();
                 using (var client = new HttpClient())
                 {
                     client.DefaultRequestHeaders.Add("Authorization", "Bearer " + GtokenApi.tokenApi);
@@ -349,11 +350,12 @@ namespace SincronizadorQvetSuvesaPOS.Conections
                     HttpResponseMessage message = task.Result;
                     if (message.StatusCode == System.Net.HttpStatusCode.OK)
                     {
-                        return "1";
+                      res = JsonConvert.DeserializeObject<RespuestaArticulos>(message.Content.ReadAsStringAsync().ToString());
+                        //return "1";
                     }
                     else if (message.StatusCode == System.Net.HttpStatusCode.NotFound)
                     {
-                        return "0";
+                        //return "0";
                     }
                     else
                     {
@@ -363,8 +365,10 @@ namespace SincronizadorQvetSuvesaPOS.Conections
                         });
                         string mens = task2.Result;
                         ModelError error = JsonConvert.DeserializeObject<ModelError>(mens);
-                        return error.Exceptionmessage;
+                        res.Error = error.Exceptionmessage;
+                        //return error.Exceptionmessage;
                     }
+                    return res;
                 }
                    
             }

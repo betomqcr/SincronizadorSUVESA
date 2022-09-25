@@ -122,6 +122,7 @@
     <Compile Include="Models\ListaTarifa.cs" />
     <Compile Include="Models\Lote.cs" />
     <Compile Include="Models\Marca.cs" />
+    <Compile Include="Models\RespuestaArticulos.cs" />
     <Compile Include="Models\ResultadoAPI.cs" />
     <Compile Include="Models\Seccion.cs" />
     <Compile Include="Models\Serialize.cs" />

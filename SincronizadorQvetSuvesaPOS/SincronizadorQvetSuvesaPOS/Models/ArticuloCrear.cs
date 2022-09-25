@@ -9,6 +9,9 @@ namespace SincronizadorQvetSuvesaPOS.Models
 {
     public  class ArticuloCrear
     {
+        [JsonProperty ("id_articulo")]
+        public int id_articulo { get; set; }
+
         [JsonProperty("descripcion")]
         public string Descripcion { get; set; }
 
