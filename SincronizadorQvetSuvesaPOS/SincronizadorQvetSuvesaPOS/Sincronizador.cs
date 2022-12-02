@@ -31,7 +31,7 @@ namespace SincronizadorQvetSuvesaPOS
         {
             // TODO: agregar código aquí para iniciar el servicio.
             st_Inicio.Start();
-           Argumento = args;
+            Argumento = args;
 
         }
 
@@ -125,11 +125,11 @@ namespace SincronizadorQvetSuvesaPOS
 
                     List<ResultadoAPI> res = pro.ActualizarArticulos();
 
-                   
+
 
                     int contador = 0;
                     int conadorM = 0;
-                    foreach(ResultadoAPI temp in res)
+                    foreach (ResultadoAPI temp in res)
                     {
                         if (temp.res.Equals("1"))
                             contador++;
@@ -146,8 +146,8 @@ namespace SincronizadorQvetSuvesaPOS
                         EscrituraArchivo.escribirArchivo(tipoEscritura.Resultados, $"Cantidad de registros Actualizados {Estadistica.cantidadActualizados}");
                         EscrituraArchivo.escribirArchivo(tipoEscritura.Resultados, $"Cantidad de registros Creados {Estadistica.cantidadCreados}");
                     }
-                   
-                    if(conadorM!=0)
+
+                    if (conadorM != 0)
                         EscrituraArchivo.escribirArchivo(tipoEscritura.TiempoEmpleado, $"Cantidad de registros fallidos {conadorM}");
 
                     Bitacora.Observaciones = $"Cantidad de registros exitosos {contador}";

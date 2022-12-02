@@ -136,7 +136,9 @@ namespace SincronizadorQvetSuvesaPOS.Conections
                 Solicitud solicitud = new Solicitud()
                 {
                     DesdeFechaActualizacion = DateTime.Today.AddDays(-1).ToString("yyyy/MM/dd"),
-                    Pagina = pagina
+                    Pagina = pagina,
+                    RegistrosPorPagina = 100,
+                    Id = ConfigurationSettings.AppSettings["QvetWS"].ToString()
                 };
 
                 Modelos.Marca marca = new Modelos.Marca();
@@ -146,13 +148,12 @@ namespace SincronizadorQvetSuvesaPOS.Conections
                     client.DefaultRequestHeaders.Add("Authorization", "Bearer " + GtokenApi.tokenApi);
                     var task = Task.Run(async () =>
                     {
-                        return await client.PostAsync(
-                            GLinkApi.linkApi + "/ventas",
-                            new StringContent(solicitud.ToString(), Encoding.UTF8, "application/json")
-                            ); ;
-                    }
-                    );
+                        return await client.GetAsync(
+                            GLinkApi.linkApi + $"/ventas?pagina={solicitud.Pagina}&id={solicitud.Id}&desdeFechaActualizacion={solicitud.DesdeFechaActualizacion}&registros_por_pagina={solicitud.RegistrosPorPagina}");
+                    });
+
                     HttpResponseMessage message = task.Result;
+
                     if (message.StatusCode == System.Net.HttpStatusCode.OK)
                     {
                         
@@ -187,7 +188,9 @@ namespace SincronizadorQvetSuvesaPOS.Conections
                 Solicitud solicitud = new Solicitud()
                 {
                     DesdeFechaActualizacion = DateTime.Today.AddDays(-1).ToString("yyyy/MM/dd"),
-                    Pagina = 1
+                    Pagina = 1,
+                    RegistrosPorPagina = 100,
+                    Id = ConfigurationSettings.AppSettings["QvetWS"].ToString()
                 };
 
                 Modelos.Marca marca = new Modelos.Marca();
@@ -198,9 +201,8 @@ namespace SincronizadorQvetSuvesaPOS.Conections
 
                     var task = Task.Run(async () =>
                     {
-                        return await client.PostAsync(
-                            GLinkApi.linkApi + "/ventas",
-                            new StringContent(solicitud.ToString(), Encoding.UTF8, "application/json")); ;
+                        return await client.GetAsync(
+                            GLinkApi.linkApi + $"/ventas?pagina={solicitud.Pagina}&id={solicitud.Id}&desdeFechaActualizacion={solicitud.DesdeFechaActualizacion}&registros_por_pagina={solicitud.RegistrosPorPagina}");
                     });
 
                     HttpResponseMessage message = task.Result;
