@@ -137,8 +137,7 @@ namespace SincronizadorQvetSuvesaPOS.Conections
                 {
                     DesdeFechaActualizacion = DateTime.Today.AddDays(-1).ToString("yyyy/MM/dd"),
                     Pagina = pagina,
-                    RegistrosPorPagina = 100,
-                    Id = ConfigurationSettings.AppSettings["QvetWS"].ToString()
+                    RegistrosPorPagina = 100
                 };
 
                 Modelos.Marca marca = new Modelos.Marca();
@@ -149,7 +148,7 @@ namespace SincronizadorQvetSuvesaPOS.Conections
                     var task = Task.Run(async () =>
                     {
                         return await client.GetAsync(
-                            GLinkApi.linkApi + $"/ventas?pagina={solicitud.Pagina}&id={solicitud.Id}&desdeFechaActualizacion={solicitud.DesdeFechaActualizacion}&registros_por_pagina={solicitud.RegistrosPorPagina}");
+                            GLinkApi.linkApi + $"/ventas?pagina={solicitud.Pagina}&id=&desdeFechaActualizacion={solicitud.DesdeFechaActualizacion}&registros_por_pagina={solicitud.RegistrosPorPagina}");
                     });
 
                     HttpResponseMessage message = task.Result;
@@ -189,8 +188,7 @@ namespace SincronizadorQvetSuvesaPOS.Conections
                 {
                     DesdeFechaActualizacion = DateTime.Today.AddDays(-1).ToString("yyyy/MM/dd"),
                     Pagina = 1,
-                    RegistrosPorPagina = 100,
-                    Id = ConfigurationSettings.AppSettings["QvetWS"].ToString()
+                    RegistrosPorPagina = 100
                 };
 
                 Modelos.Marca marca = new Modelos.Marca();
@@ -202,7 +200,7 @@ namespace SincronizadorQvetSuvesaPOS.Conections
                     var task = Task.Run(async () =>
                     {
                         return await client.GetAsync(
-                            GLinkApi.linkApi + $"/ventas?pagina={solicitud.Pagina}&id={solicitud.Id}&desdeFechaActualizacion={solicitud.DesdeFechaActualizacion}&registros_por_pagina={solicitud.RegistrosPorPagina}");
+                            GLinkApi.linkApi + $"/ventas?pagina={solicitud.Pagina}&id=&desdeFechaActualizacion={solicitud.DesdeFechaActualizacion}&registros_por_pagina={solicitud.RegistrosPorPagina}");
                     });
 
                     HttpResponseMessage message = task.Result;

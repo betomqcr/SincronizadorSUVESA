@@ -31,6 +31,7 @@ namespace SincronizadorQvetSuvesaPOS.Negocio
             try
             {
                 long paginas = con.ObtenerPaginasTotales();
+                Modelos.Marca  marca = con.ObtenerResultadosApiVentas(1);
                 List<Dato> listaDatos = new List<Dato>();
                 List<Dato> listaDatosTemp = new List<Dato>();
                 List<Albaran> listaAlbaran = new List<Albaran>();
@@ -94,7 +95,7 @@ namespace SincronizadorQvetSuvesaPOS.Negocio
             }
         }
 
-        
+
 
         public List<ResultadoAPI> ActualizarArticulos()
         {
@@ -115,7 +116,7 @@ namespace SincronizadorQvetSuvesaPOS.Negocio
                 {
                     Articulo isValidArt = articulosAPI.Find(x => x.Descripcion == temp.Descripcion || x.IdArticulo == temp.IdArticulo);
 
-                    if( isValidArt == null || (isValidArt != null && temp.IdArticulo != null))
+                    if (isValidArt == null || (isValidArt != null && temp.IdArticulo != null))
                     {
                         if (temp.IdArticulo != null)
                         {
@@ -127,7 +128,8 @@ namespace SincronizadorQvetSuvesaPOS.Negocio
                         }
                         else if (temp.IdArticulo == null)
                         {
-                            respuesta = con.CrearArticulos(temp);
+                            respuesta = "1";
+                            //respuesta = con.CrearArticulos(temp);
                             if (respuesta == "1")
                                 Estadistica.cantidadCreados++;
                         }
@@ -140,7 +142,7 @@ namespace SincronizadorQvetSuvesaPOS.Negocio
                         };
                         resultado.Add(dato);
                     }
-                    
+
                 }
 
                 return resultado;
