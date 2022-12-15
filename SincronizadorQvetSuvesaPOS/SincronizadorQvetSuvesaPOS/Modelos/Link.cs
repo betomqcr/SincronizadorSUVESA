@@ -9,7 +9,7 @@ namespace SincronizadorQvetSuvesaPOS.Modelos
 {
     public class Link
     {
-        public string id { get; set; }
+        public string clientid { get; set; }
 
         public string ToJsonString()
         {

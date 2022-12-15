@@ -25,7 +25,7 @@ namespace SincronizadorQvetSuvesaPOS.Conections
 
                 Link link = new Link()
                 {
-                    id = id,
+                    clientid = id,
                 };
 
                 using (var client = new HttpClient())
