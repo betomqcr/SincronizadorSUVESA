@@ -60,7 +60,8 @@ namespace SincronizadorQvetSuvesaPOS
 
                 string[] args = Argumento[0].Split(',');
 
-                if (args[0].Equals("1"))
+
+                if (args.Equals("1"))
                 {
                     Bitacora.UsuarioSuvesa = args[1];
                     Bitacora.Accion = "Ventas";

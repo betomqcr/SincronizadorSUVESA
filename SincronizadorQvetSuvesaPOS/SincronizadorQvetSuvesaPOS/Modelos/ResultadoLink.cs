@@ -8,6 +8,6 @@ namespace SincronizadorQvetSuvesaPOS.Modelos
 {
     public  class ResultadoLink
     {
-        public string ObtenerUrlApiResult { get; set; }
+        public string url { get; set; }
     }
 }

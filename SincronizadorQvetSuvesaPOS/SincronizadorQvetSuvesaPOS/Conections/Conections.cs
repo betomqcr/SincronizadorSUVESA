@@ -48,7 +48,7 @@ namespace SincronizadorQvetSuvesaPOS.Conections
                         });
                         var jsonstrig = task2.Result;
                         reslink = JsonConvert.DeserializeObject<ResultadoLink>(jsonstrig);
-                        string resultStr = reslink.ObtenerUrlApiResult;
+                        string resultStr = reslink.url;
                         return resultStr;
                     }
                     else if (message.StatusCode == System.Net.HttpStatusCode.Conflict)
@@ -84,7 +84,7 @@ namespace SincronizadorQvetSuvesaPOS.Conections
                     var task = Task.Run(async () =>
                     {
                         return await client.PostAsync(
-                            GLinkApi.linkApi+ "/auth",
+                            GLinkApi.linkApi+ "/api/auth",
                             new StringContent(token.ToString(), Encoding.UTF8, "application/json")
                             );
                     }
@@ -148,7 +148,7 @@ namespace SincronizadorQvetSuvesaPOS.Conections
                     var task = Task.Run(async () =>
                     {
                         return await client.GetAsync(
-                            GLinkApi.linkApi + $"/ventas?pagina={solicitud.Pagina}&id=&desdeFechaActualizacion={solicitud.DesdeFechaActualizacion}&registros_por_pagina={solicitud.RegistrosPorPagina}");
+                            GLinkApi.linkApi + $"/api/ventas?pagina={solicitud.Pagina}&id=&desdeFechaActualizacion={solicitud.DesdeFechaActualizacion}&registros_por_pagina={solicitud.RegistrosPorPagina}");
                     });
 
                     HttpResponseMessage message = task.Result;
@@ -200,7 +200,7 @@ namespace SincronizadorQvetSuvesaPOS.Conections
                     var task = Task.Run(async () =>
                     {
                         return await client.GetAsync(
-                            GLinkApi.linkApi + $"/ventas?pagina={solicitud.Pagina}&id=&desdeFechaActualizacion={solicitud.DesdeFechaActualizacion}&registros_por_pagina={solicitud.RegistrosPorPagina}");
+                            GLinkApi.linkApi + $"/api/ventas?pagina={solicitud.Pagina}&id=&desdeFechaActualizacion={solicitud.DesdeFechaActualizacion}&registros_por_pagina={solicitud.RegistrosPorPagina}");
                     });
 
                     HttpResponseMessage message = task.Result;
